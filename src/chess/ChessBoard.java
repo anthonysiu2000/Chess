@@ -42,7 +42,11 @@ public class ChessBoard {
 	
 	//Method called when we want to display the board to console
 	public void display() {
-		
+		for(int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				board[i][j].print();
+			}
+		}
 	}
 	
 	

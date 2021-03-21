@@ -6,4 +6,6 @@ public abstract class ChessPiece {
 	public String getPlayer() {
 		return player;
 	}
+	public void print() {
+	}
 }
