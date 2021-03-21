@@ -15,25 +15,25 @@ public class ChessBoard {
 			}
 		}
 		for (int k = 0; k < 8; k++) {
-			board[1][k] = new Pawn("black");
-			board[6][k] = new Pawn("white");
+			board[1][k] = new Pawn("black", 1, k);
+			board[6][k] = new Pawn("white", 6, k);
 		}
-		board[0][0] = new Rook("black");
-		board[0][7] = new Rook("black");
-		board[7][0] = new Rook("white");
-		board[7][7] = new Rook("white");
-		board[0][1] = new Knight("black");
-		board[0][6] = new Knight("black");
-		board[7][1] = new Knight("white");
-		board[7][6] = new Knight("white");
-		board[0][2] = new Bishop("black");
-		board[0][5] = new Bishop("black");
-		board[7][2] = new Bishop("white");
-		board[7][5] = new Bishop("white");
-		board[0][3] = new Queen("black");
-		board[7][3] = new Queen("white");
-		board[0][4] = new King("black");
-		board[7][4] = new King("white");
+		board[0][0] = new Rook("black", 0, 0);
+		board[0][7] = new Rook("black", 0, 7);
+		board[7][0] = new Rook("white", 7, 0);
+		board[7][7] = new Rook("white", 7, 7);
+		board[0][1] = new Knight("black", 0, 1);
+		board[0][6] = new Knight("black", 0, 6);
+		board[7][1] = new Knight("white", 7, 1);
+		board[7][6] = new Knight("white", 7, 6);
+		board[0][2] = new Bishop("black", 0, 2);
+		board[0][5] = new Bishop("black", 0, 5);
+		board[7][2] = new Bishop("white", 7, 2);
+		board[7][5] = new Bishop("white", 7, 5);
+		board[0][3] = new Queen("black", 0, 3);
+		board[7][3] = new Queen("white", 7, 3);
+		board[0][4] = new King("black", 0, 4);
+		board[7][4] = new King("white", 7, 4);
 		
 		//White goes first
 		whiteTurn = true;
@@ -50,5 +50,13 @@ public class ChessBoard {
 		System.out.print(" a  b  c  d  e  f  g  h\n");
 	}
 	
+	//Method called to check if a player is in check
+	public boolean inCheck(String player) {
+		return true;
+	}
+	//Method called to check if a player is in checkmate
+	public boolean inCheckmate(String player) {
+		return true;
+	}
 	
 }

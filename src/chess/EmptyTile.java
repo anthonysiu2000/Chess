@@ -11,6 +11,7 @@ public class EmptyTile extends ChessPiece{
 			showTile = true;
 		}
 		player = "neutral";
+		takenOrAttacked = false;
 	}
 	//Prints piece to console
 	public void print() {
