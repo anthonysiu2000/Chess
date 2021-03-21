@@ -21,7 +21,7 @@ public class King extends ChessPiece{
 	public boolean isLegal(ChessPiece[][] board, int x, int y) {
 		if (board[x][y].player.equals(player)) {
 			return false;
-		} else if ((row-x) > 2 || (row-x) < -2 || (col-y) < -2 || (col-y) > 2) {
+		} else if (Math.abs(row-x) > 2 || Math.abs(col-y) > 2) {
 			return false;
 		}
 		return true;

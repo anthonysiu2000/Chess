@@ -18,14 +18,25 @@ public class Knight extends ChessPiece{
 		}
 	}
 	//checks legality of a move
-	public boolean isLegal(int x, int y) {
-		return true;
+	public boolean isLegal(ChessPiece[][] board, int x, int y) {
+		if (board[x][y].player.equals(player)) {
+			return false;
+		} else if (Math.abs(row-x) + Math.abs(col-y) == 3 && (row-x) != 0 && (col-y) != 0) {
+			return true;
+		}
+		return false;
 	}
 	//sets board tiles to either being attacked or not, to determine check/checkmate
 	public ChessPiece[][] attacking(ChessPiece[][] board) {
-		for (int i = -1; i < 2; i++) {
-			for (int j = -1; j < 2; j++) {
+		for (int i = -2; i < 3; i++) {
+			for (int j = -2; j < 3; j++) {
 				if ((row + i) < 0 || (row + i) > 8 || (col + j) < 0 || (col + j) > 8) {
+					continue;
+				}
+				if (i == 0 || j == 0) {
+					continue;
+				}
+				if (Math.abs(i) + Math.abs(j) != 3) {
 					continue;
 				}
 				board[row + i][col + j].takenOrAttacked = true;
