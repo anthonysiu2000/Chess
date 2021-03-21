@@ -60,15 +60,63 @@ public class Chess {
 	
 	//main method
 	public static void main(String[] args) throws IOException {
+
 		ChessBoard BOARD = new ChessBoard();
-		BOARD.display();
-		
 		while (true) {
-			String[] input = getMove(BOARD);
-			if (input == null) {
-				System.out.print("null");
+			//displays board
+			BOARD.display();
+			
+			while (true) {
+				//gets input
+				String[] input = getMove(BOARD);
+				if (input == null) {
+					System.out.print("Invalid input. Try again.");
+					continue;
+				}
+				//checks if selected unit is the player's and if the move is legal
+				int row = input[0].charAt(0) - 97;
+				int col = input[0].charAt(1) - 49;
+				int Drow = input[1].charAt(0) - 97;
+				int Dcol = input[1].charAt(1) - 49;
+				if (!BOARD.board[row][col].player.equals("white") && BOARD.whiteTurn == true) {
+					System.out.print("Illegal move, try again");
+					continue;
+				}
+				if (!BOARD.board[row][col].player.equals("black") && BOARD.whiteTurn == false) {
+					System.out.print("Illegal move, try again");
+					continue;
+				}
+				if (!BOARD.board[row][col].isLegal(Drow, Dcol)) {
+					System.out.print("Illegal move, try again");
+					continue;
+				}
+				//executes the move and updates board
+				ChessBoard tempBOARD = BOARD;
+				tempBOARD.execute(input);
+				//checks if the move puts the same player in check
+				if (tempBOARD.inCheck("white") && tempBOARD.whiteTurn == true) {
+					System.out.print("Illegal move, try again");
+					continue;
+				}
+				if (tempBOARD.inCheck("black") && tempBOARD.whiteTurn == false) {
+					System.out.print("Illegal move, try again");
+					continue;
+				}
+				BOARD = tempBOARD;
+				break;
+			}
+			
+			//changes turn and checks for check/checkmate/draw
+			if (BOARD.whiteTurn) {
+				BOARD.whiteTurn = false;
+				if (BOARD.inCheck("white")) {
+					System.out.print("Check");
+				}
 			} else {
-				System.out.print(input[0]);
+				BOARD.whiteTurn = true;
+				if (BOARD.inCheck("black")) {
+					System.out.print("Check");
+				}
 			}
 		}
 		

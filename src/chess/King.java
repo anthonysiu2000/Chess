@@ -30,7 +30,7 @@ public class King extends ChessPiece{
 	public ChessPiece[][] attacking(ChessPiece[][] board) {
 		for (int i = -1; i < 2; i++) {
 			for (int j = -1; j < 2; j++) {
-				if ((row + i) < 0 || (row + i) > 8 || (col + j) < 0 || (col + j) > 8) {
+				if ((row + i) < 0 || (row + i) > 7 || (col + j) < 0 || (col + j) > 7) {
 					continue;
 				}
 				board[row + i][col + j].takenOrAttacked = true;

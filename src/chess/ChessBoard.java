@@ -50,6 +50,11 @@ public class ChessBoard {
 		System.out.print(" a  b  c  d  e  f  g  h\n");
 	}
 	
+	//Method called to execute an input instruction after finding instruction is legal
+	public void execute(String[] input) {
+		
+	}
+	
 	//Method called to reset taken/attacked values of the board
 	public void resetAttacked(int x, int y) {
 		for (int i = 0; i < 8; i++) {

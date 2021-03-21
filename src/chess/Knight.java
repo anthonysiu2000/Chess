@@ -30,10 +30,10 @@ public class Knight extends ChessPiece{
 	public ChessPiece[][] attacking(ChessPiece[][] board) {
 		for (int i = -2; i < 3; i++) {
 			for (int j = -2; j < 3; j++) {
-				if ((row + i) < 0 || (row + i) > 8 || (col + j) < 0 || (col + j) > 8) {
+				if (i == 0 || j == 0) {
 					continue;
 				}
-				if (i == 0 || j == 0) {
+				if ((row + i) < 0 || (row + i) > 7 || (col + j) < 0 || (col + j) > 7) {
 					continue;
 				}
 				if (Math.abs(i) + Math.abs(j) != 3) {
