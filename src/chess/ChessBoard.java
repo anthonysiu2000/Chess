@@ -8,11 +8,10 @@ public class ChessBoard {
 	
 	//Constructor used to initialize a ChessBoard Object
 	public ChessBoard() {
-		
 		//Code goes through each tile and sets them to the proper subclass of ChessPiece
 		for (int i = 2; i < 6; i++) {
 			for (int j = 0; j < 8; j++) {
-				board[i][j] = new EmptyTile();
+				board[i][j] = new EmptyTile(i, j);
 			}
 		}
 		for (int k = 0; k < 8; k++) {
@@ -46,7 +45,9 @@ public class ChessBoard {
 			for (int j = 0; j < 8; j++) {
 				board[i][j].print();
 			}
+			System.out.print((8-i) + "\n");
 		}
+		System.out.print(" a  b  c  d  e  f  g  h\n");
 	}
 	
 	
