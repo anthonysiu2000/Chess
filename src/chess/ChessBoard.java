@@ -50,10 +50,51 @@ public class ChessBoard {
 		System.out.print(" a  b  c  d  e  f  g  h\n");
 	}
 	
+	//Method called to reset taken/attacked values of the board
+	public void resetAttacked(int x, int y) {
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				if (board[i][j].getPlayer().equals("white") || board[i][j].getPlayer().equals("black")) {
+					if (i != x && j != y) {
+						board[i][j].takenOrAttacked = true;
+					} else {
+						board[i][j].takenOrAttacked = false;
+					}
+				} else {
+					board[i][j].takenOrAttacked = false;
+				}
+			}
+		}
+	}
+	
 	//Method called to check if a player is in check
 	public boolean inCheck(String player) {
-		return true;
+		int kingRow = -1;
+		int kingCol = -1;
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				if (board[i][j].getPlayer().equals(player) && board[i][j].takenOrAttacked == false) {
+					kingRow = i;
+					kingCol = j;
+				}
+			}
+		}
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				if (!board[i][j].getPlayer().equals(player) && !board[i][j].getPlayer().equals("neutral")) {
+					board = board[i][j].attacking(board);
+				}
+			}
+		}
+		if (board[kingRow][kingCol].takenOrAttacked) {
+			resetAttacked(kingRow, kingCol);
+			return true;
+		} else {
+			resetAttacked(kingRow, kingCol);
+			return false;
+		}
 	}
+	
 	//Method called to check if a player is in checkmate
 	public boolean inCheckmate(String player) {
 		return true;
