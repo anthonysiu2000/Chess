@@ -73,7 +73,9 @@ public class ChessBoard {
 		int kingCol = -1;
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				if (board[i][j].getPlayer().equals(player) && board[i][j].takenOrAttacked == false) {
+				//alternative:
+				//if (board[i][j].getPlayer().equals(player) && board[i][j].takenOrAttacked == false)
+				if (board[i][j].getPlayer().equals(player) && board[i][j].identity.equals("king")) {
 					kingRow = i;
 					kingCol = j;
 				}

@@ -11,6 +11,7 @@ public class EmptyTile extends ChessPiece{
 			showTile = true;
 		}
 		player = "neutral";
+		identity = "empty";
 		takenOrAttacked = false;
 	}
 	//Prints piece to console

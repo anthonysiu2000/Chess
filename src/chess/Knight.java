@@ -5,15 +5,32 @@ public class Knight extends ChessPiece{
 	public Knight(String owner, int x, int y) {
 		player = owner;
 		takenOrAttacked = true;
+		identity = "knight";
 		row = x;
 		col = y;
 	}
 	//Prints piece to console
 	public void print() {
-		if (player == "white") {
+		if (player.equals("white")) {
 			System.out.print("wN ");
 		} else {
 			System.out.print("bN ");
 		}
+	}
+	//checks legality of a move
+	public boolean isLegal(int x, int y) {
+		return true;
+	}
+	//sets board tiles to either being attacked or not, to determine check/checkmate
+	public ChessPiece[][] attacking(ChessPiece[][] board) {
+		for (int i = -1; i < 2; i++) {
+			for (int j = -1; j < 2; j++) {
+				if ((row + i) < 0 || (row + i) > 8 || (col + j) < 0 || (col + j) > 8) {
+					continue;
+				}
+				board[row + i][col + j].takenOrAttacked = true;
+			}
+		}
+		return board;
 	}
 }

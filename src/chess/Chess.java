@@ -24,7 +24,7 @@ public class Chess {
 		if (input.length > 3) {
 			return null;
 		}
-		if (input.length == 1 && input[0] != "draw") {
+		if (input.length == 1 && !input[0].equals("draw")) {
 			return null;
 		}
 		if (input.length == 3 && (!input[2].equals("draw?") && !input[2].equals("N") && !input[2].equals("R") && !input[2].equals("Q") && !input[2].equals("B") && !input[2].equals("P"))) {
