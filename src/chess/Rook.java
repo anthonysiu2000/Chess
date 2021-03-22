@@ -24,14 +24,14 @@ public class Rook extends ChessPiece{
 			return false;
 		}
 		//check if the movement of the rook is in a straight line
-		else if ((((Math.abs(row-x) < 8) && (Math.abs(row-x) > -8)) && (Math.abs(col-y) == 0)) || (((Math.abs(col-y) < 8) && (Math.abs(col-y) > -8)) && (Math.abs(row-y) == 0))) {
+		if ((col-y) == 0 || (row-x) == 0) {
 			//if only moving one, already checked if player piece is at destination, so assume true
-			if(Math.abs(row-x) == 1) {
+			if(Math.abs(row-x) == 1 || Math.abs(col-y) == 1) {
 				return true;
 			}
 			//check if there are any pieces in between when moving down
 			else if (x > row) {
-				for (int i = row+1; i < (x-1); i++) {
+				for (int i = row+1; i < x; i++) {
 					if(!board[i][col].player.equals("neutral")) {
 						return false;
 					}
@@ -39,7 +39,7 @@ public class Rook extends ChessPiece{
 			}
 			//check if there are any pieces in between when moving up
 			else if (x < row) {
-				for (int i = row-1; i > (x+1); i--) {
+				for (int i = row-1; i > x; i--) {
 					if(!board[i][col].player.equals("neutral")) {
 						return false;
 					}
@@ -47,7 +47,7 @@ public class Rook extends ChessPiece{
 			}
 			//check if there are any pieces in between when moving right
 			else if (y > col) {
-				for (int i = col+1; i > (x-1); i++) {
+				for (int i = col+1; i < y; i++) {
 					if(!board[row][i].player.equals("neutral")) {
 						return false;
 					}
@@ -55,7 +55,7 @@ public class Rook extends ChessPiece{
 			}
 			//check if there are any pieces in between when moving left
 			else if (y < col) {
-				for (int i = col-1; i > (x+1); i--) {
+				for (int i = col-1; i > y; i--) {
 					if(!board[row][i].player.equals("neutral")) {
 						return false;
 					}
@@ -64,7 +64,8 @@ public class Rook extends ChessPiece{
 			//if no pieces are in between, move is successful
 			return true;
 		}
-		return true;
+		//destination not in a straight line
+		return false;
 	}
 	//sets board tiles to either being attacked or not, to determine check/checkmate
 	public ChessPiece[][] attacking(ChessPiece[][] board) {
