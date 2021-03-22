@@ -5,6 +5,7 @@ public class Rook extends ChessPiece{
 	public Rook(String owner, int x, int y) {
 		player = owner;
 		takenOrAttacked = true;
+		hasMoved = false;
 		identity = "rook";
 		row = x;
 		col = y;

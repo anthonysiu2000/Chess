@@ -5,6 +5,7 @@ public class King extends ChessPiece{
 	public King(String owner, int x, int y) {
 		player = owner;
 		takenOrAttacked = false;
+		hasMoved = false;
 		identity = "king";
 		row = x;
 		col = y;
@@ -27,18 +28,15 @@ public class King extends ChessPiece{
 			return false;
 		}
 		//Check if you want to castle to column 'a' rook
-		else if ((row == x) && (col - y) == 2 && board[row][col].hasMoved == false) {
+		else if ((row == x) && (col - y) == 2 && hasMoved == false) {
 			//need to figure out how to move the rook also
-			board[row][col].hasMoved = true;
 			return true;
 		}
 		//Check if you want to castle to column 'h' rook
-		else if ((row == x) && (col - y) == -2 && board[row][col].hasMoved == false) {
+		else if ((row == x) && (col - y) == -2 && hasMoved == false) {
 			//need to figure out how to move the rook also
-			board[row][col].hasMoved = true;
 			return true;
 		}
-		board[row][col].hasMoved = true;
 		return true;
 	}
 	//sets board tiles to either being attacked or not, to determine check/checkmate
