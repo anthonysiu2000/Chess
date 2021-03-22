@@ -74,10 +74,10 @@ public class Chess {
 					continue;
 				}
 				//checks if selected unit is the player's and if the move is legal
-				int row = input[0].charAt(0) - 97;
-				int col = input[0].charAt(1) - 49;
-				int Drow = input[1].charAt(0) - 97;
-				int Dcol = input[1].charAt(1) - 49;
+				int col = input[0].charAt(0) - 97;
+				int row = input[0].charAt(1) - 49;
+				int Dcol = input[1].charAt(0) - 97;
+				int Drow = input[1].charAt(1) - 49;
 				if (!BOARD.board[row][col].player.equals("white") && BOARD.whiteTurn == true) {
 					System.out.print("Illegal move, try again");
 					continue;

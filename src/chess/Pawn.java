@@ -99,6 +99,7 @@ public class Pawn extends ChessPiece {
 				return false;
 			}
 		}
+		return true;
 	}
 	//sets board tiles to either being attacked or not, to determine check/checkmate
 	public ChessPiece[][] attacking(ChessPiece[][] board) {
