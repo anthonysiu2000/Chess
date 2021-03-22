@@ -61,9 +61,7 @@ public class Rook extends ChessPiece{
 				}
 			}
 			//if no pieces are in between, move is successful
-			else {
-				return true;
-			}
+			return true;
 		}
 	}
 	//sets board tiles to either being attacked or not, to determine check/checkmate

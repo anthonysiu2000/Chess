@@ -7,8 +7,10 @@ public abstract class ChessPiece {
 	//Stores owner and identity of piece
 	public String player;
 	public String identity;
-	// Used to determine if tile is being attacked, usually set to false
+	//Used to determine if tile is being attacked, usually set to false
 	public boolean takenOrAttacked;
+	//Used to determine if piece already moved (specifically king or rook)
+	public boolean hasMoved;
 	//method to obtain player variable 
 	public String getPlayer() {
 		return player;

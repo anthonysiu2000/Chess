@@ -21,9 +21,24 @@ public class King extends ChessPiece{
 	public boolean isLegal(ChessPiece[][] board, int x, int y) {
 		if (board[x][y].player.equals(player)) {
 			return false;
-		} else if (Math.abs(row-x) > 2 || Math.abs(col-y) > 2) {
+		}
+		//Check to move the king in one space
+		else if (Math.abs(row-x) > 2 || Math.abs(col-y) > 2) {
 			return false;
 		}
+		//Check if you want to castle to column 'a' rook
+		else if ((row == x) && (col - y) == 2 && board[row][col].hasMoved == false) {
+			//need to figure out how to move the rook also
+			board[row][col].hasMoved = true;
+			return true;
+		}
+		//Check if you want to castle to column 'h' rook
+		else if ((row == x) && (col - y) == -2 && board[row][col].hasMoved == false) {
+			//need to figure out how to move the rook also
+			board[row][col].hasMoved = true;
+			return true;
+		}
+		board[row][col].hasMoved = true;
 		return true;
 	}
 	//sets board tiles to either being attacked or not, to determine check/checkmate
