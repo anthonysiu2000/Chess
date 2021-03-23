@@ -25,81 +25,57 @@ public class Pawn extends ChessPiece {
 		}
 		//checks for white pawns
 		else if(player.equals("white")) {	
-			//if white pawn is at starting point, you can move forward one space, two spaces, or attack
+			//if white pawn is at starting point, you can move forward two spaces
 			if(row == 6) {
 				//can only move to a space that is "neutral"
-				if ((((col-y) == 2) || ((col-y) == 1)) && ((board[x][y].player.equals("neutral")))){
+				if ((col == y) && (row-x) == 2 && board[x][y].player.equals("neutral") && board[x+1][y].player.equals("neutral")){
 					return true;
 				}
-				//can move to a space forward and diagonal to attack
-				else if(((col-y) == 1) && (((row-x) == -1) || ((row-x) == 1))) {
-					// checks if it is a space not neutral and not player
-					if((!board[x][y].player.equals("neutral")) && (!board[x][y].player.equals(player))) {
-						return true;
-					}
-					else {
-						return false;
-					}
-				}
-				else {
-					return false;
-				}
 			}
-			//otherwise, white pawn moves forward one... (as long as its a neutral space)
-			else if(((col-y) == 1) && (board[x][y].player.equals("neutral"))){
+			
+			//Other possible actions: white pawn moves forward one... (as long as its a neutral space)
+			if ((col == y) && (row-x) == 1 && board[x][y].player.equals("neutral")){
 				return true;
 			}
 			//... or attacks at a diagonal
-			else if(((col-y) == 1) && (((row-x) == -1) || ((row-x) == 1))) {
+			else if((row-x) == 1 && Math.abs(col-y) == 1) {
 				// checks if it is a space not neutral and not player, AKA an enemy piece
 				if((!board[x][y].player.equals("neutral")) && (!board[x][y].player.equals(player))) {
 					return true;
-				}
-				else {
+				} else {
 					return false;
 				}
-			}
-		}
-		else if(player.equals("black")) {
-			//if black pawn is at starting point, you can move forward one space, two spaces, or attack
-			if(row == 1) {
-				//can only move to a space that is "neutral"
-				if ((((col-y) == -2) || ((col-y) == -1)) && ((board[x][y].player.equals("neutral")))){
-					return true;
-				}
-				//can move to a space forward and diagonal to attack
-				else if(((col-y) == -1) && (((row-x) == -1) || ((row-x) == 1))) {
-					// checks if it is a space not neutral and not player
-					if((!board[x][y].player.equals("neutral")) && (!board[x][y].player.equals(player))) {
-						return true;
-					}
-					else {
-						return false;
-					}
-				}
-				else {
-					return false;
-				}
-			}
-			//otherwise, black pawn moves forward one... (as long as its a neutral space)
-			else if(((col-y) == -1) && (board[x][y].player.equals("neutral"))){
-				return true;
-			}
-			//... or attacks at a diagonal
-			else if(((col-y) == -1) && (((row-x) == -1) || ((row-x) == 1))) {
-				// checks if it is a space not neutral and not player, AKA an enemy piece
-				if((!board[x][y].player.equals("neutral")) && (!board[x][y].player.equals(player))) {
-					return true;
-				}
-				else {
-					return false;
-				}
-			}
-			else {
+			} else {
+				//invalid destination
 				return false;
 			}
 		}
-		return true;
+		else{
+			//if black pawn is at starting point, you can move forwad two spaces
+			if(row == 1) {
+				//can only move to a space that is "neutral"
+				if ((col == y) && (row-x) == -2 && board[x][y].player.equals("neutral") && board[x-1][y].player.equals("neutral")){
+					return true;
+				}
+			}
+			
+			//Other possible actions: black pawn moves forward one... (as long as its a neutral space)
+			if ((col == y) && (row-x) == -1 && board[x][y].player.equals("neutral")){
+				return true;
+			}
+			//... or attacks at a diagonal
+			else if((row-x) == -1 && Math.abs(col-y) == 1) {
+				// checks if it is a space not neutral and not player, AKA an enemy piece
+				if((!board[x][y].player.equals("neutral")) && (!board[x][y].player.equals(player))) {
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				//invalid destination
+				return false;
+			}
+		}
 	}
 	//sets board tiles to either being attacked or not, to determine check/checkmate
 	public ChessPiece[][] attacking(ChessPiece[][] board) {
