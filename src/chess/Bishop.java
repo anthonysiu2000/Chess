@@ -75,13 +75,41 @@ public class Bishop extends ChessPiece{
 	}
 	//sets board tiles to either being attacked or not, to determine check/checkmate
 	public ChessPiece[][] attacking(ChessPiece[][] board) {
-		for (int i = -1; i < 2; i++) {
-			for (int j = -1; j < 2; j++) {
-				if ((row + i) < 0 || (row + i) > 7 || (col + j) < 0 || (col + j) > 7) {
-					continue;
-				}
-				board[row + i][col + j].takenOrAttacked = true;
+		//parses through all spaces south east and sets them to attacked until meeting a player or enemy piece
+		int j = col+1;
+		for (int i = row+1; i < 8 && j < 8; i++,j++) {
+			if(!board[i][j].player.equals("neutral")) {
+				board[i][j].takenOrAttacked = true;
+				break;
 			}
+			board[i][j].takenOrAttacked = true;
+		}
+		//parses through all spaces south west and sets them to attacked until meeting a player or enemy piece
+		j = col-1;
+		for (int i = row+1; i < 8 && j > -1; i++,j--) {
+			if(!board[i][j].player.equals("neutral")) {
+				board[i][j].takenOrAttacked = true;
+				break;
+			}
+			board[i][j].takenOrAttacked = true;
+		}
+		//parses through all spaces north east and sets them to attacked until meeting a player or enemy piece
+		j = col+1;
+		for(int i = row-1; i > -1 && j < 8; i--,j++) {
+			if(!board[i][j].player.equals("neutral")) {
+				board[i][j].takenOrAttacked = true;
+				break;
+			}
+			board[i][j].takenOrAttacked = true;
+		}
+		//parses through all spaces north west and sets them to attacked until meeting a player or enemy piece
+		j = col-1;
+		for(int i = row-1; i > -1 && j > -1; i--,j--) {
+			if(!board[i][j].player.equals("neutral")) {
+				board[i][j].takenOrAttacked = true;
+				break;
+			}
+			board[i][j].takenOrAttacked = true;
 		}
 		return board;
 	}
