@@ -126,11 +126,11 @@ public class Chess {
 				tempBOARD.execute(input);
 				//checks if the move puts the same player in check
 				if (tempBOARD.inCheck("white") && tempBOARD.whiteTurn == true) {
-					System.out.print("Illegal move, try again");
+					System.out.print("Illegal move, try again king in check");
 					continue;
 				}
 				if (tempBOARD.inCheck("black") && tempBOARD.whiteTurn == false) {
-					System.out.print("Illegal move, try again");
+					System.out.print("Illegal move, try again king in check");
 					continue;
 				}
 				BOARD.clone(tempBOARD);
