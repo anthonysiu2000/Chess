@@ -5,6 +5,7 @@ public class Knight extends ChessPiece{
 	public Knight(String owner, int x, int y) {
 		player = owner;
 		takenOrAttacked = true;
+		hasMoved = false;
 		identity = "knight";
 		row = x;
 		col = y;

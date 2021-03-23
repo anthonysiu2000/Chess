@@ -5,6 +5,7 @@ public class Bishop extends ChessPiece{
 	public Bishop(String owner, int x, int y) {
 		player = owner;
 		takenOrAttacked = true;
+		hasMoved = false;
 		identity = "rook";
 		row = x;
 		col = y;

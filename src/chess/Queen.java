@@ -5,6 +5,7 @@ public class Queen extends ChessPiece{
 	public Queen(String owner, int x, int y) {
 		player = owner;
 		takenOrAttacked = true;
+		hasMoved = false;
 		identity = "queen";
 		row = x;
 		col = y;

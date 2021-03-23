@@ -5,6 +5,7 @@ public class Pawn extends ChessPiece {
 	public Pawn(String owner,int x, int y) {
 		player = owner;
 		takenOrAttacked = true;
+		hasMoved = false;
 		identity = "pawn";
 		row = x;
 		col = y;
