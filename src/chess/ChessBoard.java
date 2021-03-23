@@ -9,10 +9,14 @@ public class ChessBoard {
 	//Constructor used to initialize a ChessBoard Object
 	public ChessBoard() {
 		//Code goes through each tile and sets them to the proper subclass of ChessPiece
-		for (int i = 1; i < 7; i++) {
+		for (int i = 2; i < 6; i++) {
 			for (int j = 0; j < 8; j++) {
 				board[i][j] = new EmptyTile(i, j);
 			}
+		}
+		for (int k = 0; k < 8; k++) {
+			board[1][k] = new Pawn("black", 1, k);
+			board[6][k] = new Pawn("white", 6, k);
 		}
 		board[0][0] = new Rook("black", 0, 0);
 		board[0][7] = new Rook("black", 0, 7);
