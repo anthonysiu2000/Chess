@@ -11,6 +11,8 @@ public abstract class ChessPiece {
 	public boolean takenOrAttacked;
 	//Used to determine if piece already moved (specifically king or rook)
 	public boolean hasMoved;
+	//Used to determine if a pawn can be taken by enpassant
+	public boolean canEnpassant;
 	//method to obtain player variable 
 	public String getPlayer() {
 		return player;

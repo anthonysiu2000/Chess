@@ -6,6 +6,7 @@ public class Rook extends ChessPiece{
 		player = owner;
 		takenOrAttacked = true;
 		hasMoved = false;
+		canEnpassant = false;
 		identity = "rook";
 		row = x;
 		col = y;

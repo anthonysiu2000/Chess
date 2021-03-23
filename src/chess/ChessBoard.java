@@ -109,6 +109,25 @@ public class ChessBoard {
 		int Dcol = input[1].charAt(0) - 97;
 		int Drow = 7 - (input[1].charAt(1) - 49);
 		
+		//Finds any pieces at the beginning of white's turn in row 4 and sets their canEnpassant to false
+		for(int i = 0; i < 8; i++){
+			if(board[row][col].player.equals("white")) {
+				board[4][i].canEnpassant = false;
+			}
+			else {
+				continue;
+			}
+		}
+		//Finds any pieces at the beginning of black's turn in row 3 and sets their canEnpassant to false
+		for(int i = 0; i < 8; i++){
+			if(board[row][col].player.equals("black")) {
+				board[3][i].canEnpassant = false;
+			}
+			else {
+				continue;
+			}
+		}
+		
 		//Implements king castling from either side of the board
 		if(board[row][col].identity.equals("king")) {
 			//Implements white king castling to g1
@@ -141,8 +160,9 @@ public class ChessBoard {
 			}
 		}
 		
-		//Implements pawn promotion if a pawn gets to the end of a column
+		//Implements pawn promotion if a pawn gets to the end of a column, assigns canEnpassant, and implements enpassant if conditions are met
 		if (board[row][col].identity.equals("pawn")){
+			//Implements promotion for white pawns
 			if (board[row][col].player.equals("white") && Drow == 0) {
 				//Checks input if its Q, R, N, B, or anything else, promotes pawn to requested piece, if no specified piece, becomes white queen
 				if(input[2].equals("Q")) {
@@ -166,6 +186,7 @@ public class ChessBoard {
 					board[row][col] = new EmptyTile(row, col);
 				}
 			}
+			///Implements promotion for black pawns
 			else if (board[row][col].player.equals("black") && Drow == 7) {
 				//Checks input if its Q, R, N, B, or anything else, promotes pawn to requested piece, if no specified piece, becomes black queen
 				if(input[2].equals("Q")) {
@@ -189,7 +210,34 @@ public class ChessBoard {
 					board[row][col] = new EmptyTile(row, col);
 				}
 			}
-			
+			//Implements canEmpassant for white pawns that enter row 4
+			else if (board[row][col].player.equals("white") && Drow == 4 && row == 6) {
+				board[Drow][Dcol] = board[row][col];
+				board[Drow][Dcol].canEnpassant = true;
+				board[row][col] = new EmptyTile(row, col);
+			}
+			//Implements canEmpassant for black pawns that enter row 3
+			else if (board[row][col].player.equals("black") && Drow == 3 && row == 1) {
+				board[Drow][Dcol] = board[row][col];
+				board[Drow][Dcol].canEnpassant = true;
+				board[row][col] = new EmptyTile(row, col);
+			}
+			//Implements enpassant for white pawns on black pawns who moved in the most recent turn
+			else if (Drow == 2 && row == 3 && (Dcol == col+1 || Dcol == col-1) && (board[row][col-1].canEnpassant == true || board[row][col+1].canEnpassant == true)){
+				//Moves white pawn to destination
+				board[Drow][Dcol] = board[row][col];
+				board[row][col] = new EmptyTile(row, col);
+				//Takes away black pawn due to enpassant
+				board[row][Dcol] = new EmptyTile(row, Dcol);
+			}
+			//Implements enpassant for black pawns on white pawns who moved in the most recent turn
+			else if (Drow == 5 && row == 4 && (Dcol == col+1 || Dcol == col-1) && (board[row][col-1].canEnpassant == true || board[row][col+1].canEnpassant == true)){
+				//Moves black pawn to destination
+				board[Drow][Dcol] = board[row][col];
+				board[row][col] = new EmptyTile(row, col);
+				//Takes away white pawn due to enpassant
+				board[row][Dcol] = new EmptyTile(row, Dcol);
+			}
 		}
 		else {
 			//replaces the destination tile with the piece, and the origin tile with an empty tile

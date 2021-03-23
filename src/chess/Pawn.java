@@ -6,6 +6,7 @@ public class Pawn extends ChessPiece {
 		player = owner;
 		takenOrAttacked = true;
 		hasMoved = false;
+		canEnpassant = false;
 		identity = "pawn";
 		row = x;
 		col = y;

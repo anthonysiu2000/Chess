@@ -14,6 +14,7 @@ public class EmptyTile extends ChessPiece{
 		identity = "empty";
 		takenOrAttacked = false;
 		hasMoved = false;
+		canEnpassant = false;
 		row = x;
 		col = y;
 	}
