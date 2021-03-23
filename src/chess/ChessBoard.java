@@ -141,7 +141,7 @@ public class ChessBoard {
 				board[Drow][Dcol].canEnpassant = true;
 				board[row][col] = new EmptyTile(row, col);
 			}
-			//Implements canEmpassant for white pawns that enter row 3
+			//Implements canEmpassant for black pawns that enter row 3
 			else if (board[row][col].player.equals("black") && Drow == 3 && row == 1) {
 				board[Drow][Dcol] = board[row][col];
 				board[Drow][Dcol].canEnpassant = true;
@@ -149,27 +149,19 @@ public class ChessBoard {
 			}
 			//Implements enpassant for white pawns on black pawns who moved in the most recent turn
 			else if (Drow == 2 && row == 3 && (Dcol == col+1 || Dcol == col-1) && (board[row][col-1].canEnpassant == true || board[row][col+1].canEnpassant == true)){
+				//Moves white pawn to destination
 				board[Drow][Dcol] = board[row][col];
 				board[row][col] = new EmptyTile(row, col);
-				//Checks which space has the black pawn that is taken from enpassant
-				if(board[row][col-1].canEnpassant == true) {
-					board[row][col-1] = new EmptyTile(row, col-1);
-				}
-				else {
-					board[row][col+1] = new EmptyTile(row, col+1);
-				}
+				//Takes away black pawn due to enpassant
+				board[row][Dcol] = new EmptyTile(row, Dcol);
 			}
 			//Implements enpassant for black pawns on white pawns who moved in the most recent turn
 			else if (Drow == 5 && row == 4 && (Dcol == col+1 || Dcol == col-1) && (board[row][col-1].canEnpassant == true || board[row][col+1].canEnpassant == true)){
+				//Moves black pawn to destination
 				board[Drow][Dcol] = board[row][col];
 				board[row][col] = new EmptyTile(row, col);
-				//Checks which space has the white pawn that is taken from enpassant
-				if(board[row][col-1].canEnpassant == true) {
-					board[row][col-1] = new EmptyTile(row, col-1);
-				}
-				else {
-					board[row][col+1] = new EmptyTile(row, col+1);
-				}
+				//Takes away white pawn due to enpassant
+				board[row][Dcol] = new EmptyTile(row, Dcol);
 			}
 		}
 		else {
