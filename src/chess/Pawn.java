@@ -80,13 +80,21 @@ public class Pawn extends ChessPiece {
 	}
 	//sets board tiles to either being attacked or not, to determine check/checkmate
 	public ChessPiece[][] attacking(ChessPiece[][] board) {
-		for (int i = -1; i < 2; i++) {
-			for (int j = -1; j < 2; j++) {
-				if ((row + i) < 0 || (row + i) > 7 || (col + j) < 0 || (col + j) > 7) {
-					continue;
-				}
-				board[row + i][col + j].takenOrAttacked = true;
+		if (player.equals("white")) {
+			if (col < 7) {
+				board[row-1][col+1].takenOrAttacked = true;
+			} 
+			if (col > 0) {
+				board[row-1][col-1].takenOrAttacked = true;
 			}
+		} else {
+			if (col < 7) {
+				board[row+1][col+1].takenOrAttacked = true;
+			} 
+			if (col > 0) {
+				board[row+1][col-1].takenOrAttacked = true;
+			}
+			
 		}
 		return board;
 	}
