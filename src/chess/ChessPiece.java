@@ -16,14 +16,9 @@ public abstract class ChessPiece {
 		return player;
 	}
 	//method to print piece to board
-	public void print() {
-	}
+	public abstract void print();
 	//method to check if move is legal
-	public boolean isLegal(int x, int y) {
-		return true;
-	}
+	public abstract boolean isLegal(ChessPiece[][] board, int x, int y);
 	//method used to flag tiles as being attacked
-	public ChessPiece[][] attacking(ChessPiece[][] board) {
-		return board;
-	}
+	public abstract ChessPiece[][] attacking(ChessPiece[][] board);
 }

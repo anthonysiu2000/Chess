@@ -62,6 +62,9 @@ public class Chess {
 	public static void main(String[] args) throws IOException {
 
 		ChessBoard BOARD = new ChessBoard();
+		boolean resigning = false;
+		boolean drawing = false;
+		
 		while (true) {
 			//displays board
 			BOARD.display();
@@ -75,11 +78,30 @@ public class Chess {
 				}
 				//resign 
 				if (input[0].equals("resign")) {
-					
+					if (BOARD.whiteTurn) {
+						System.out.print("Black wins");
+						resigning = true;
+						break;
+					} else {
+						System.out.print("White wins");
+						resigning = true;
+						break;
+					}
 				}
-				//draw attempt
+				//draw confirm
 				if (input[0].equals("draw")) {
-					
+					if (!drawing) {
+						System.out.print("Invalid input. Try again.");
+						continue;
+					} else {
+						resigning = true;
+						break;
+					}
+				}
+				//draw request
+				drawing = false;
+				if (input.length == 3 && input[2].equals("draw?")) {
+					drawing = true;
 				}
 				//checks if selected unit is the player's and if the move is legal
 				int col = input[0].charAt(0) - 97;
@@ -94,7 +116,7 @@ public class Chess {
 					System.out.print("Illegal move, try again");
 					continue;
 				}
-				if (!BOARD.board[row][col].isLegal(Drow, Dcol)) {
+				if (!BOARD.board[row][col].isLegal(BOARD.board, Drow, Dcol)) {
 					System.out.print("Illegal move, try again");
 					continue;
 				}
@@ -113,7 +135,10 @@ public class Chess {
 				BOARD = tempBOARD;
 				break;
 			}
-			
+			//break statement used when either player resigns/draws
+			if (resigning) {
+				break;
+			}
 			//changes turn and checks for check/checkmate/draw
 			if (BOARD.whiteTurn) {
 				BOARD.whiteTurn = false;
