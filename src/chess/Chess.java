@@ -24,7 +24,7 @@ public class Chess {
 		if (input.length > 3) {
 			return null;
 		}
-		if (input.length == 1 && !input[0].equals("draw")) {
+		if (input.length == 1 && (!input[0].equals("draw") && !input[0].equals("resign"))) {
 			return null;
 		}
 		if (input.length == 3 && (!input[2].equals("draw?") && !input[2].equals("N") && !input[2].equals("R") && !input[2].equals("Q") && !input[2].equals("B") && !input[2].equals("P"))) {
@@ -73,11 +73,19 @@ public class Chess {
 					System.out.print("Invalid input. Try again.");
 					continue;
 				}
+				//resign 
+				if (input[0].equals("resign")) {
+					
+				}
+				//draw attempt
+				if (input[0].equals("draw")) {
+					
+				}
 				//checks if selected unit is the player's and if the move is legal
 				int col = input[0].charAt(0) - 97;
-				int row = input[0].charAt(1) - 49;
+				int row = 7 - (input[0].charAt(1) - 49);
 				int Dcol = input[1].charAt(0) - 97;
-				int Drow = input[1].charAt(1) - 49;
+				int Drow = 7 - (input[1].charAt(1) - 49);
 				if (!BOARD.board[row][col].player.equals("white") && BOARD.whiteTurn == true) {
 					System.out.print("Illegal move, try again");
 					continue;

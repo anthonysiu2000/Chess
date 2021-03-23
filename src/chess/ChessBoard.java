@@ -52,6 +52,17 @@ public class ChessBoard {
 	
 	//Method called to execute an input instruction after finding instruction is legal
 	public void execute(String[] input) {
+		int col = input[0].charAt(0) - 97;
+		int row = 7 - (input[0].charAt(1) - 49);
+		int Dcol = input[1].charAt(0) - 97;
+		int Drow = 7 - (input[1].charAt(1) - 49);
+		
+		board[Drow][Dcol] = board[row][col];
+		board[Drow][Dcol].hasMoved = true;
+		board[Drow][Dcol].col = Dcol;
+		board[Drow][Dcol].row = Drow;
+		board[row][col] = new EmptyTile(row, col);
+		
 		
 	}
 	

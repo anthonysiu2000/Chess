@@ -5,6 +5,7 @@ public class Bishop extends ChessPiece{
 	public Bishop(String owner, int x, int y) {
 		player = owner;
 		takenOrAttacked = true;
+		hasMoved = false;
 		identity = "rook";
 		row = x;
 		col = y;
@@ -19,59 +20,58 @@ public class Bishop extends ChessPiece{
 	}
 	//checks legality of a move
 	public boolean isLegal(ChessPiece[][] board, int x, int y) {
+		//cannot take your own piece
 		if (board[x][y].player.equals(player)) {
 			return false;
 		}
 		//check if the movement of the bishop is in a diagonal line
-		else if (Math.abs(row-x) == Math.abs(col-y) && Math.abs(row-x) > -8 && Math.abs(row-x) < 8) {
+		if (Math.abs(row-x) == Math.abs(col-y)) {
 			//if only moving one, already checked if player piece is at destination, so assume true
-			if(Math.abs(row-x) == 1 && Math.abs(col-y) == 1) {
+			if(Math.abs(row-x) == 1) {
 				return true;
 			}
 			//check if there are any pieces in between when moving diagonal (south east)
 			else if (x > row && y > col) {
-				for (int i = row+1; i < (x-1); i++) {
-					for (int j = col+1; j < (y-1); j++) {
-						if(!board[i][j].player.equals("neutral")) {
-							return false;
-						}
+				int j = col+1;
+				for (int i = row+1; i < x; i++,j++) {
+					if(!board[i][j].player.equals("neutral")) {
+						return false;
 					}
 				}
 			}
 			//check if there are any pieces in between when moving diagonal (south west)
 			else if (x > row && y < col) {
-				for (int i = row+1; i > (x-1); i++) {
-					for (int j = col-1; j < (y+1); j--) {
-						if(!board[i][j].player.equals("neutral")) {
-							return false;
-						}
+				int j = col-1;
+				for (int i = row+1; i < x; i++,j--) {
+					if(!board[i][j].player.equals("neutral")) {
+						return false;
 					}
 				}
 			}
 			//check if there are any pieces in between when moving diagonal (north east)
 			else if (x < row && y > col) {
-				for(int i = row-1; i > (x+1); i--) {
-					for (int j = col+1; j > (x-1); j++) {
-						if(!board[i][j].player.equals("neutral")) {
-							return false;
-						}
+				int j = col+1;
+				for(int i = row-1; i > x; i--,j++) {
+					if(!board[i][j].player.equals("neutral")) {
+						return false;
 					}
+				
 				}
 			}
 			//check if there are any pieces in between when moving diagonal (north west)
 			else if (x < row && y < col) {
-				for(int i = row-1; i > (x+1); i--) {
-					for (int j = col-1; j > (x+1); j--) {
-						if(!board[i][j].player.equals("neutral")) {
-							return false;
-						}
+				int j = col-1;
+				for(int i = row-1; i > x; i--,j--) {
+					if(!board[i][j].player.equals("neutral")) {
+						return false;
 					}
 				}
 			}
 			//if no pieces are in between, move is successful
 			return true;
 		}
-		return true;
+		//destination is not diagonal from the bishop
+		return false;
 	}
 	//sets board tiles to either being attacked or not, to determine check/checkmate
 	public ChessPiece[][] attacking(ChessPiece[][] board) {

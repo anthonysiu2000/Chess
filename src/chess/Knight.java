@@ -5,6 +5,7 @@ public class Knight extends ChessPiece{
 	public Knight(String owner, int x, int y) {
 		player = owner;
 		takenOrAttacked = true;
+		hasMoved = false;
 		identity = "knight";
 		row = x;
 		col = y;
@@ -19,6 +20,7 @@ public class Knight extends ChessPiece{
 	}
 	//checks legality of a move
 	public boolean isLegal(ChessPiece[][] board, int x, int y) {
+		//cannot take your own piece
 		if (board[x][y].player.equals(player)) {
 			return false;
 		} else if (Math.abs(row-x) + Math.abs(col-y) == 3 && (row-x) != 0 && (col-y) != 0) {
