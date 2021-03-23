@@ -51,7 +51,7 @@ public class Chess {
 			}
 		}
 		//input errors to remember, but not implemented yet
-		//3rd input can only be N,R,p,Q,B if pawn is entering last rank
+		//3rd input can only be N,R,Q,B if pawn is entering last rank
 		//single input "draw" can only be allowed after a "draw?" by other player
 		//all of these errors are errors in input, not illegal moves, which are implemented elsewhere
 		
@@ -146,7 +146,7 @@ public class Chess {
 					System.out.print("White Wins");
 				}
 				if (BOARD.inCheck("black")) {
-					System.out.print("Check");
+					System.out.print("Check\n\n");
 				}
 			} else {
 				BOARD.whiteTurn = true;
@@ -154,7 +154,7 @@ public class Chess {
 					System.out.print("Black wins");
 				}
 				if (BOARD.inCheck("white")) {
-					System.out.print("Check");
+					System.out.print("Check\n\n");
 				}
 			}
 		}
