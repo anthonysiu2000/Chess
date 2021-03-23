@@ -6,6 +6,7 @@ public class Knight extends ChessPiece{
 		player = owner;
 		takenOrAttacked = true;
 		hasMoved = false;
+		canEnpassant = false;
 		identity = "knight";
 		row = x;
 		col = y;

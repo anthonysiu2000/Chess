@@ -6,6 +6,7 @@ public class Queen extends ChessPiece{
 		player = owner;
 		takenOrAttacked = true;
 		hasMoved = false;
+		canEnpassant = false;
 		identity = "queen";
 		row = x;
 		col = y;
