@@ -20,7 +20,5 @@ public abstract class ChessPiece {
 	//method to check if move is legal
 	public abstract boolean isLegal(ChessPiece[][] board, int x, int y);
 	//method used to flag tiles as being attacked
-	public ChessPiece[][] attacking(ChessPiece[][] board) {
-		return board;
-	}
+	public abstract ChessPiece[][] attacking(ChessPiece[][] board);
 }

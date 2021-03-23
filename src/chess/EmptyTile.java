@@ -28,5 +28,9 @@ public class EmptyTile extends ChessPiece{
 	//method that implements isLegal (will not be used)
 	public boolean isLegal(ChessPiece[][] board, int x, int y) {
 		return true;
-	};
+	}
+	//method that implements ChessPiece (will not be used)
+	public ChessPiece[][] attacking(ChessPiece[][] board) {
+		return null;
+	}
 }
