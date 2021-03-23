@@ -20,6 +20,7 @@ public class King extends ChessPiece{
 	}
 	//checks legality of a move
 	public boolean isLegal(ChessPiece[][] board, int x, int y) {
+		//cannot take your own piece
 		if (board[x][y].player.equals(player)) {
 			return false;
 		}

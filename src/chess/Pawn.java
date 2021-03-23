@@ -19,7 +19,7 @@ public class Pawn extends ChessPiece {
 	}
 	//checks legality of a move
 	public boolean isLegal(ChessPiece[][] board, int x, int y) {
-		//checks if player moves to a space where its own color is or itself
+		//cannot take your own piece
 		if (board[x][y].player.equals(player)) {
 			return false;
 		}
