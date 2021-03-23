@@ -61,12 +61,54 @@ public class ChessBoard {
 		//Implements pawn promotion if a pawn gets to the end of a column
 		if (board[row][col].identity.equals("pawn")){
 			if (board[row][col].player.equals("white") && Drow == 0) {
-				
-			} else if (board[row][col].player.equals("black") && Drow == 7) {
-				
+				//Checks input if its Q, R, N, B, or anything else, promotes pawn to requested piece, if no specified piece, becomes white queen
+				if(input[2].equals("Q")) {
+					board[Drow][Dcol] = new Queen("white",Drow, Dcol);;
+					board[row][col] = new EmptyTile(row, col);
+				}
+				else if(input[2].equals("R")) {
+					board[Drow][Dcol] = new Rook("white",Drow, Dcol);;
+					board[row][col] = new EmptyTile(row, col);
+				}
+				else if(input[2].equals("N")) {
+					board[Drow][Dcol] = new Knight("white",Drow, Dcol);;
+					board[row][col] = new EmptyTile(row, col);
+				}
+				else if(input[2].equals("B")) {
+					board[Drow][Dcol] = new Bishop("white",Drow, Dcol);;
+					board[row][col] = new EmptyTile(row, col);
+				}
+				else {
+					board[Drow][Dcol] = new Queen("white",Drow, Dcol);;
+					board[row][col] = new EmptyTile(row, col);
+				}
+			}
+			else if (board[row][col].player.equals("black") && Drow == 7) {
+				//Checks input if its Q, R, N, B, or anything else, promotes pawn to requested piece, if no specified piece, becomes black queen
+				if(input[2].equals("Q")) {
+					board[Drow][Dcol] = new Queen("black",Drow, Dcol);;
+					board[row][col] = new EmptyTile(row, col);
+				}
+				else if(input[2].equals("R")) {
+					board[Drow][Dcol] = new Rook("black",Drow, Dcol);;
+					board[row][col] = new EmptyTile(row, col);
+				}
+				else if(input[2].equals("N")) {
+					board[Drow][Dcol] = new Knight("black",Drow, Dcol);;
+					board[row][col] = new EmptyTile(row, col);
+				}
+				else if(input[2].equals("B")) {
+					board[Drow][Dcol] = new Bishop("black",Drow, Dcol);;
+					board[row][col] = new EmptyTile(row, col);
+				}
+				else {
+					board[Drow][Dcol] = new Queen("black",Drow, Dcol);;
+					board[row][col] = new EmptyTile(row, col);
+				}
 			}
 			
-		} else {
+		}
+		else {
 			//replaces the destination tile with the piece, and the origin tile with an empty tile
 			board[Drow][Dcol] = board[row][col];
 			board[Drow][Dcol].hasMoved = true;
