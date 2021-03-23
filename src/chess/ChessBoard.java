@@ -57,6 +57,37 @@ public class ChessBoard {
 		int Dcol = input[1].charAt(0) - 97;
 		int Drow = 7 - (input[1].charAt(1) - 49);
 		
+		//Implements king castling from either side of the board
+		if(board[row][col].identity.equals("king")) {
+			//Implements white king castling to g1
+			if (board[row][col].player.equals("white") && Drow == 7 && Dcol == 6 && board[row][col].hasMoved == false && board[7][7].hasMoved == false) {
+				board[Drow][Dcol] = board[row][col];
+				board[row][col] = new EmptyTile(row, col);
+				board[7][5] = board[7][7];
+				board[7][7] = new EmptyTile(7, 7);
+			}
+			//Implements white king castling to c1
+			else if (board[row][col].player.equals("white") && Drow == 7 && Dcol == 2 && board[row][col].hasMoved == false && board[7][0].hasMoved == false) {
+				board[Drow][Dcol] = board[row][col];
+				board[row][col] = new EmptyTile(row, col);
+				board[7][3] = board[7][0];
+				board[7][0] = new EmptyTile(7, 0);
+			}
+			//Implements black king castling to g8
+			else if (board[row][col].player.equals("black") && Drow == 0 && Dcol == 6 && board[row][col].hasMoved == false && board[0][7].hasMoved == false) {
+				board[Drow][Dcol] = board[row][col];
+				board[row][col] = new EmptyTile(row, col);
+				board[0][5] = board[0][7];
+				board[0][7] = new EmptyTile(0, 7);
+			}
+			//Implements black king castling to c8
+			else if (board[row][col].player.equals("black") && Drow == 0 && Dcol == 2 && board[row][col].hasMoved == false && board[0][0].hasMoved == false) {
+				board[Drow][Dcol] = board[row][col];
+				board[row][col] = new EmptyTile(row, col);
+				board[0][3] = board[0][0];
+				board[0][0] = new EmptyTile(0, 0);
+			}
+		}
 		
 		//Implements pawn promotion if a pawn gets to the end of a column
 		if (board[row][col].identity.equals("pawn")){
