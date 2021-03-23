@@ -57,11 +57,23 @@ public class ChessBoard {
 		int Dcol = input[1].charAt(0) - 97;
 		int Drow = 7 - (input[1].charAt(1) - 49);
 		
-		board[Drow][Dcol] = board[row][col];
-		board[Drow][Dcol].hasMoved = true;
-		board[Drow][Dcol].col = Dcol;
-		board[Drow][Dcol].row = Drow;
-		board[row][col] = new EmptyTile(row, col);
+		
+		//Implements pawn promotion if a pawn gets to the end of a column
+		if (board[row][col].identity.equals("pawn")){
+			if (board[row][col].player.equals("white") && Drow == 0) {
+				
+			} else if (board[row][col].player.equals("black") && Drow == 7) {
+				
+			}
+			
+		} else {
+			//replaces the destination tile with the piece, and the origin tile with an empty tile
+			board[Drow][Dcol] = board[row][col];
+			board[Drow][Dcol].hasMoved = true;
+			board[Drow][Dcol].col = Dcol;
+			board[Drow][Dcol].row = Drow;
+			board[row][col] = new EmptyTile(row, col);
+		}
 		
 		
 	}

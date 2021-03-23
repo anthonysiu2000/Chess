@@ -27,7 +27,7 @@ public class Chess {
 		if (input.length == 1 && (!input[0].equals("draw") && !input[0].equals("resign"))) {
 			return null;
 		}
-		if (input.length == 3 && (!input[2].equals("draw?") && !input[2].equals("N") && !input[2].equals("R") && !input[2].equals("Q") && !input[2].equals("B") && !input[2].equals("P"))) {
+		if (input.length == 3 && (!input[2].equals("draw?") && !input[2].equals("N") && !input[2].equals("R") && !input[2].equals("Q") && !input[2].equals("B") && !input[2].equals("p"))) {
 			return null;
 		}
 		if (input.length > 1) {
