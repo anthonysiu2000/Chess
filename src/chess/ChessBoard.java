@@ -53,6 +53,25 @@ public class ChessBoard {
 		int Dcol = input[1].charAt(0) - 97;
 		int Drow = 7 - (input[1].charAt(1) - 49);
 		
+		//Finds any pieces at the beginning of white's turn in row 4 and sets their canEnpassant to false
+		for(int i = 0; i < 8; i++){
+			if(board[row][col].player.equals("white")) {
+				board[4][i].canEnpassant = false;
+			}
+			else {
+				continue;
+			}
+		}
+		//Finds any pieces at the beginning of black's turn in row 3 and sets their canEnpassant to false
+		for(int i = 0; i < 8; i++){
+			if(board[row][col].player.equals("black")) {
+				board[3][i].canEnpassant = false;
+			}
+			else {
+				continue;
+			}
+		}
+		
 		//Implements king castling from either side of the board
 		if(board[row][col].identity.equals("king")) {
 			//Implements white king castling to g1
