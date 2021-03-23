@@ -35,6 +35,62 @@ public class ChessBoard {
 		whiteTurn = true;
 	}
 	
+	//Method to duplicate a chessboard object 
+	public void clone(ChessBoard BOARD) {
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				if (BOARD.board[i][j].player.equals("white")) {
+					if (BOARD.board[i][j].identity.equals("pawn")) {
+						board[i][j] = new Pawn("white", i, j);
+					}
+					if (BOARD.board[i][j].identity.equals("queen")) {
+						board[i][j] = new Queen("white", i, j);
+					}
+					if (BOARD.board[i][j].identity.equals("knight")) {
+						board[i][j] = new Knight("white", i, j);
+					}
+					if (BOARD.board[i][j].identity.equals("bishop")) {
+						board[i][j] = new Bishop("white", i, j);
+					}
+					if (BOARD.board[i][j].identity.equals("king")) {
+						board[i][j] = new King("white", i, j);
+						board[i][j].hasMoved = BOARD.board[i][j].hasMoved;
+					}
+					if (BOARD.board[i][j].identity.equals("rook")) {
+						board[i][j] = new Rook("white", i, j);
+						board[i][j].hasMoved = BOARD.board[i][j].hasMoved;
+					}
+				} else if (BOARD.board[i][j].player.equals("black")){
+					if (BOARD.board[i][j].identity.equals("pawn")) {
+						board[i][j] = new Pawn("black", i, j);
+					}
+					if (BOARD.board[i][j].identity.equals("queen")) {
+						board[i][j] = new Queen("black", i, j);
+					}
+					if (BOARD.board[i][j].identity.equals("knight")) {
+						board[i][j] = new Knight("black", i, j);
+					}
+					if (BOARD.board[i][j].identity.equals("bishop")) {
+						board[i][j] = new Bishop("black", i, j);
+					}
+					if (BOARD.board[i][j].identity.equals("king")) {
+						board[i][j] = new King("black", i, j);
+						board[i][j].hasMoved = BOARD.board[i][j].hasMoved;
+					}
+					if (BOARD.board[i][j].identity.equals("rook")) {
+						board[i][j] = new Rook("black", i, j);
+						board[i][j].hasMoved = BOARD.board[i][j].hasMoved;
+					}
+				} else {
+					board[i][j] = new EmptyTile(i, j);
+				}
+			}
+		}
+		whiteTurn = BOARD.whiteTurn;
+		return;
+	}
+	
+	
 	//Method called when we want to display the board to console
 	public void display() {
 		for(int i = 0; i < 8; i++) {

@@ -121,7 +121,8 @@ public class Chess {
 					continue;
 				}
 				//executes the move and updates board
-				ChessBoard tempBOARD = BOARD;
+				ChessBoard tempBOARD = new ChessBoard();
+				tempBOARD.clone(BOARD);
 				tempBOARD.execute(input);
 				//checks if the move puts the same player in check
 				if (tempBOARD.inCheck("white") && tempBOARD.whiteTurn == true) {
@@ -132,7 +133,7 @@ public class Chess {
 					System.out.print("Illegal move, try again");
 					continue;
 				}
-				BOARD = tempBOARD;
+				BOARD.clone(tempBOARD);
 				break;
 			}
 			//break statement used when either player resigns/draws
