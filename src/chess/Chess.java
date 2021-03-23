@@ -75,7 +75,13 @@ public class Chess {
 				}
 				//resign 
 				if (input[0].equals("resign")) {
-					
+					if (BOARD.whiteTurn) {
+						System.out.print("Black wins");
+						break;
+					} else {
+						System.out.print("White wins");
+						break;
+					}
 				}
 				//draw attempt
 				if (input[0].equals("draw")) {
@@ -94,7 +100,7 @@ public class Chess {
 					System.out.print("Illegal move, try again");
 					continue;
 				}
-				if (!BOARD.board[row][col].isLegal(Drow, Dcol)) {
+				if (!BOARD.board[row][col].isLegal(BOARD.board, Drow, Dcol)) {
 					System.out.print("Illegal move, try again");
 					continue;
 				}
@@ -113,6 +119,7 @@ public class Chess {
 				BOARD = tempBOARD;
 				break;
 			}
+			//break statement used when either player resigns/draws
 			
 			//changes turn and checks for check/checkmate/draw
 			if (BOARD.whiteTurn) {

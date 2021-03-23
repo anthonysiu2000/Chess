@@ -25,4 +25,8 @@ public class EmptyTile extends ChessPiece{
 			System.out.print("   ");
 		}
 	}
+	//method that implements isLegal (will not be used)
+	public boolean isLegal(ChessPiece[][] board, int x, int y) {
+		return true;
+	};
 }
