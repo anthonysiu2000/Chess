@@ -143,7 +143,7 @@ public class ChessBoard {
 		int kingCol = -1;
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				if (board[i][j].getPlayer().equals(player) && board[i][j].identity.equals("king")) {
+				if (board[i][j].player.equals(player) && board[i][j].identity.equals("king")) {
 					kingRow = i;
 					kingCol = j;
 				}
@@ -151,7 +151,7 @@ public class ChessBoard {
 		}
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				if (!board[i][j].getPlayer().equals(player) && !board[i][j].getPlayer().equals("neutral")) {
+				if (!board[i][j].player.equals(player) && !board[i][j].player.equals("neutral")) {
 					board = board[i][j].attacking(board);
 				}
 			}
@@ -167,7 +167,7 @@ public class ChessBoard {
 	
 	//Method called to check if a player is in checkmate
 	public boolean inCheckmate(String player) {
-		return true;
+		return false;
 	}
 	
 }

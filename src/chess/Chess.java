@@ -27,7 +27,7 @@ public class Chess {
 		if (input.length == 1 && (!input[0].equals("draw") && !input[0].equals("resign"))) {
 			return null;
 		}
-		if (input.length == 3 && (!input[2].equals("draw?") && !input[2].equals("N") && !input[2].equals("R") && !input[2].equals("Q") && !input[2].equals("B") && !input[2].equals("p"))) {
+		if (input.length == 3 && (!input[2].equals("draw?") && !input[2].equals("N") && !input[2].equals("R") && !input[2].equals("Q") && !input[2].equals("B"))) {
 			return null;
 		}
 		if (input.length > 1) {
@@ -139,15 +139,21 @@ public class Chess {
 			if (resigning) {
 				break;
 			}
-			//changes turn and checks for check/checkmate/draw
+			//changes turn and checks for check/checkmate
 			if (BOARD.whiteTurn) {
 				BOARD.whiteTurn = false;
-				if (BOARD.inCheck("white")) {
+				if (BOARD.inCheckmate("black")) {
+					System.out.print("White Wins");
+				}
+				if (BOARD.inCheck("black")) {
 					System.out.print("Check");
 				}
 			} else {
 				BOARD.whiteTurn = true;
-				if (BOARD.inCheck("black")) {
+				if (BOARD.inCheckmate("white")) {
+					System.out.print("Black wins");
+				}
+				if (BOARD.inCheck("white")) {
 					System.out.print("Check");
 				}
 			}
