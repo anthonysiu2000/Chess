@@ -9,14 +9,10 @@ public class ChessBoard {
 	//Constructor used to initialize a ChessBoard Object
 	public ChessBoard() {
 		//Code goes through each tile and sets them to the proper subclass of ChessPiece
-		for (int i = 2; i < 6; i++) {
+		for (int i = 1; i < 7; i++) {
 			for (int j = 0; j < 8; j++) {
 				board[i][j] = new EmptyTile(i, j);
 			}
-		}
-		for (int k = 0; k < 8; k++) {
-			board[1][k] = new Pawn("black", 1, k);
-			board[6][k] = new Pawn("white", 6, k);
 		}
 		board[0][0] = new Rook("black", 0, 0);
 		board[0][7] = new Rook("black", 0, 7);
@@ -262,14 +258,19 @@ public class ChessBoard {
 	}
 	
 	//Method called to reset taken/attacked values of the board
-	public void resetAttacked(int x, int y) {
+	public void resetAttacked(int x, int y, boolean setUnitsAttacked) {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
+				board[i][j].attackingKing = false;
 				if (board[i][j].player.equals("white") || board[i][j].player.equals("black")) {
 					if (i == x && j == y) {
 						board[i][j].takenOrAttacked = false;
 					} else {
-						board[i][j].takenOrAttacked = true;
+						if (setUnitsAttacked) {
+							board[i][j].takenOrAttacked = true;
+						} else {
+							board[i][j].takenOrAttacked = false;
+						}
 					}
 				} else {
 					board[i][j].takenOrAttacked = false;
@@ -292,7 +293,17 @@ public class ChessBoard {
 			}
 		}
 		//assigns takenOrAttacked values
-		resetAttacked(kingRow, kingCol);
+		resetAttacked(kingRow, kingCol, true);
+		setAttack(player);
+		
+		if (board[kingRow][kingCol].takenOrAttacked) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	//method called to calculate takenOrAttacked by a certain side
+	public void setAttack(String player) {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
 				if (!board[i][j].player.equals(player) && !board[i][j].player.equals("neutral")) {
@@ -300,12 +311,8 @@ public class ChessBoard {
 				}
 			}
 		}
-		if (board[kingRow][kingCol].takenOrAttacked) {
-			return true;
-		} else {
-			return false;
-		}
 	}
+	
 	
 	//Method called to check if a player is in checkmate
 	public boolean inCheckmate(String player) {
@@ -336,11 +343,171 @@ public class ChessBoard {
 				}
 			}
 		}
-		//Attacking piece cannot be taken
-		
-		//Path between attacking piece and king cannot be blocked, unless attacking piece is knight
-		
-		return true;
+		//Attacking piece(s) cannot be taken
+		resetAttacked(kingRow, kingCol, false);
+		if (player.equals("white")) {
+			setAttack("black");
+		} else {
+			setAttack("white");
+		}
+		boolean attackingPieceCantTake = false;
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				//finds attacking piece(s)
+				if (board[i][j].attackingKing && !board[i][j].player.equals(player) && board[i][j].takenOrAttacked) {
+					
+					//Path between attacking piece(s) and king cannot be blocked, unless attacking piece is knight or pawn
+					if (board[i][j].identity.equals("pawn") || board[i][j].identity.equals("knight")) {
+						attackingPieceCantTake = true;
+						continue;
+					}
+					
+					//checks for horizontal movement
+					if (board[i][j].identity.equals("rook") || board[i][j].identity.equals("queen")) {
+						if ((kingRow-i) == 0 || (kingCol-j) == 0) {
+							//there must be at least one space between attacking piece and king
+							if((Math.abs(kingRow-i) == 1) || (Math.abs(kingCol-j) == 1)) {
+								attackingPieceCantTake = true;
+								continue;
+							} else {
+								if (i > kingRow) {
+									boolean continueThing = false;
+									for (int k = kingRow+1; k < i; k++) {
+										//a space between can be attacked
+										if(board[k][kingCol].takenOrAttacked) {
+											continueThing = true;
+										}
+									}
+									if (continueThing) {
+										continue;
+									}
+									attackingPieceCantTake = true;
+									continue;
+								} else if (i < kingRow) {
+									boolean continueThing = false;
+									for (int k = kingRow-1; k > i; k--) {
+										//a space between can be attacked
+										if(board[k][kingCol].takenOrAttacked) {
+											continueThing = true;
+										}
+									}
+									if (continueThing) {
+										continue;
+									}
+									attackingPieceCantTake = true;
+									continue;
+								} else if (j > kingCol) {
+									boolean continueThing = false;
+									for (int k = kingCol+1; k < j; k++) {
+										//a space between can be attacked
+										if(board[kingRow][k].takenOrAttacked) {
+											continueThing = true;
+										}
+									}
+									if (continueThing) {
+										continue;
+									}
+									attackingPieceCantTake = true;
+									continue;
+									
+								} else if (j < kingCol) {
+									boolean continueThing = false;
+									for (int k = kingCol-1; k > j; k--) {
+										//a space between can be attacked
+										if(board[kingRow][k].takenOrAttacked) {
+											continueThing = true;
+										}
+									}
+									if (continueThing) {
+										continue;
+									}
+									attackingPieceCantTake = true;
+									continue;
+									
+								}
+							}
+						}
+					}
+					
+					//checks for diagonal movement
+					if (board[i][j].identity.equals("bishop") || board[i][j].identity.equals("queen")) {
+						if (Math.abs(kingRow-i) == Math.abs(kingCol-j)) {
+							//there must be at least one space between attacking piece and king
+							if(Math.abs(kingRow-i) == 1) {
+								attackingPieceCantTake = true;
+								continue;
+							} else {
+								if (i > kingRow && j > kingCol) {
+									boolean continueThing = false;
+									int k = kingCol+1;
+									for (int l = kingRow+1; l < i; l++,k++) {
+										if(board[l][k].takenOrAttacked) {
+											continueThing = true;
+										}
+									}
+									if (continueThing) {
+										continue;
+									}
+									attackingPieceCantTake = true;
+									continue;
+								} else if (i > kingRow && j < kingCol) {
+									boolean continueThing = false;
+									int k = kingCol-1;
+									for (int l = kingRow+1; l < i; l++,k--) {
+										if(board[l][k].takenOrAttacked) {
+											continueThing = true;
+										}
+									}
+									if (continueThing) {
+										continue;
+									}
+									attackingPieceCantTake = true;
+									continue;
+									
+								} else if (i < kingRow && j > kingCol) {
+									boolean continueThing = false;
+									int k = kingCol+1;
+									for (int l = kingRow-1; l > i; l--,k++) {
+										if(board[l][k].takenOrAttacked) {
+											continueThing = true;
+										}
+									}
+									if (continueThing) {
+										continue;
+									}
+									attackingPieceCantTake = true;
+									continue;
+									
+								} else if (i < kingRow && j < kingCol) {
+									boolean continueThing = false;
+									int k = kingCol-1;
+									for (int l = kingRow-1; l > i; l--,k--) {
+										if(board[l][k].takenOrAttacked) {
+											continueThing = true;
+										}
+									}
+									if (continueThing) {
+										continue;
+									}
+									attackingPieceCantTake = true;
+									continue;
+									
+								}
+							}
+						}
+					}
+				}
+			}
+			if (attackingPieceCantTake) {
+				continue;
+			}
+		}
+		//if attacking piece can be taken, then we make sure if we do attack the attacking piece, the king is not in check
+		if (!attackingPieceCantTake) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 	
 }

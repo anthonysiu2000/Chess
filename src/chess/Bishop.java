@@ -8,7 +8,7 @@ public class Bishop extends ChessPiece{
 		hasMoved = false;
 		canEnpassant = false;
 		attackingKing = false;
-		identity = "rook";
+		identity = "bishop";
 		row = x;
 		col = y;
 	}
