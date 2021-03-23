@@ -24,7 +24,7 @@ public class Rook extends ChessPiece{
 			return false;
 		}
 		//check if the movement of the rook is in a straight line
-		else if ((((Math.abs(row-x) < 8) && (Math.abs(row-x) > -8)) && (Math.abs(col-y) == 0)) || (((Math.abs(col-y) < 8) && (Math.abs(col-y) > -8)) && (Math.abs(row-y) == 0))) {
+		else if (((col-y) == 0) || (row-x) == 0) {
 			//if only moving one, already checked if player piece is at destination, so assume true
 			if(Math.abs(row-x) == 1) {
 				return true;
