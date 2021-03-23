@@ -23,49 +23,49 @@ public class Queen extends ChessPiece{
 		if (board[x][y].player.equals(player)) {
 			return false;
 		}
+		
+		
+		
 		//check if the movement of the queen is in a diagonal line
-		else if (Math.abs(row-x) == Math.abs(col-y) && Math.abs(row-x) > -8 && Math.abs(row-x) < 8) {
+		if (Math.abs(row-x) == Math.abs(col-y)) {
 			//if only moving one, already checked if player piece is at destination, so assume true
-			if(Math.abs(row-x) == 1 && Math.abs(col-y) == 1) {
+			if(Math.abs(row-x) == 1) {
 				return true;
 			}
 			//check if there are any pieces in between when moving diagonal (south east)
 			else if (x > row && y > col) {
-				for (int i = row+1; i < (x-1); i++) {
-					for (int j = col+1; j < (y-1); j++) {
-						if(!board[i][j].player.equals("neutral")) {
-							return false;
-						}
+				int j = col+1;
+				for (int i = row+1; i < x; i++,j++) {
+					if(!board[i][j].player.equals("neutral")) {
+						return false;
 					}
 				}
 			}
 			//check if there are any pieces in between when moving diagonal (south west)
 			else if (x > row && y < col) {
-				for (int i = row+1; i > (x-1); i++) {
-					for (int j = col-1; j < (y+1); j--) {
-						if(!board[i][j].player.equals("neutral")) {
-							return false;
-						}
+				int j = col-1;
+				for (int i = row+1; i < x; i++,j--) {
+					if(!board[i][j].player.equals("neutral")) {
+						return false;
 					}
 				}
 			}
 			//check if there are any pieces in between when moving diagonal (north east)
 			else if (x < row && y > col) {
-				for(int i = row-1; i > (x+1); i--) {
-					for (int j = col+1; j > (x-1); j++) {
-						if(!board[i][j].player.equals("neutral")) {
-							return false;
-						}
+				int j = col+1;
+				for(int i = row-1; i > x; i--,j++) {
+					if(!board[i][j].player.equals("neutral")) {
+						return false;
 					}
+				
 				}
 			}
 			//check if there are any pieces in between when moving diagonal (north west)
 			else if (x < row && y < col) {
-				for(int i = row-1; i > (x+1); i--) {
-					for (int j = col-1; j > (x+1); j--) {
-						if(!board[i][j].player.equals("neutral")) {
-							return false;
-						}
+				int j = col-1;
+				for(int i = row-1; i > x; i--,j--) {
+					if(!board[i][j].player.equals("neutral")) {
+						return false;
 					}
 				}
 			}
@@ -74,47 +74,48 @@ public class Queen extends ChessPiece{
 		}
 		
 		//check if the movement of the queen is in a straight line
-		else if ((((Math.abs(row-x) < 8) && (Math.abs(row-x) > -8)) && (Math.abs(col-y) == 0)) || (((Math.abs(col-y) < 8) && (Math.abs(col-y) > -8)) && (Math.abs(row-y) == 0))) {
-			//if only moving one, already checked if player piece is at destination, so assume true
-			if(Math.abs(row-x) == 1) {
+		else if ((col-y) == 0 || (row-x) == 0) {
+				//if only moving one, already checked if player piece is at destination, so assume true
+				if(Math.abs(row-x) == 1 || Math.abs(col-y) == 1) {
+					return true;
+				}
+				//check if there are any pieces in between when moving down
+				else if (x > row) {
+					for (int i = row+1; i < x; i++) {
+						if(!board[i][col].player.equals("neutral")) {
+							return false;
+						}
+					}
+				}
+				//check if there are any pieces in between when moving up
+				else if (x < row) {
+					for (int i = row-1; i > x; i--) {
+						if(!board[i][col].player.equals("neutral")) {
+							return false;
+						}
+					}
+				}
+				//check if there are any pieces in between when moving right
+				else if (y > col) {
+					for (int i = col+1; i < y; i++) {
+						if(!board[row][i].player.equals("neutral")) {
+							return false;
+						}
+					}
+				}
+				//check if there are any pieces in between when moving left
+				else if (y < col) {
+					for (int i = col-1; i > y; i--) {
+						if(!board[row][i].player.equals("neutral")) {
+							return false;
+						}
+					}
+				}
+				//if no pieces are in between, move is successful
 				return true;
 			}
-			//check if there are any pieces in between when moving down
-			else if (x > row) {
-				for (int i = row+1; i < (x-1); i++) {
-					if(!board[i][col].player.equals("neutral")) {
-						return false;
-					}
-				}
-			}
-			//check if there are any pieces in between when moving up
-			else if (x < row) {
-				for (int i = row-1; i > (x+1); i--) {
-					if(!board[i][col].player.equals("neutral")) {
-						return false;
-					}
-				}
-			}
-			//check if there are any pieces in between when moving right
-			else if (y > col) {
-				for (int i = col+1; i > (x-1); i++) {
-					if(!board[row][i].player.equals("neutral")) {
-						return false;
-					}
-				}
-			}
-			//check if there are any pieces in between when moving left
-			else if (y < col) {
-				for (int i = col-1; i > (x+1); i--) {
-					if(!board[row][i].player.equals("neutral")) {
-						return false;
-					}
-				}
-			}
-			//if no pieces are in between, move is successful
-			return true;
-		}
-		return true;
+		//neither straight line nor diagonal
+		return false;
 	}
 	//sets board tiles to either being attacked or not, to determine check/checkmate
 	public ChessPiece[][] attacking(ChessPiece[][] board) {
