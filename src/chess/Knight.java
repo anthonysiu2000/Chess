@@ -7,6 +7,7 @@ public class Knight extends ChessPiece{
 		takenOrAttacked = true;
 		hasMoved = false;
 		canEnpassant = false;
+		attackingKing = false;
 		identity = "knight";
 		row = x;
 		col = y;
@@ -41,6 +42,9 @@ public class Knight extends ChessPiece{
 				}
 				if (Math.abs(i) + Math.abs(j) != 3) {
 					continue;
+				}
+				if (board[row + i][col + j].identity.equals("king") && !board[row + i][col + j].player.equals(player)) {
+					board[row][col].attackingKing = true;
 				}
 				board[row + i][col + j].takenOrAttacked = true;
 			}

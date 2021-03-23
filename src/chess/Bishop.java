@@ -7,6 +7,7 @@ public class Bishop extends ChessPiece{
 		takenOrAttacked = true;
 		hasMoved = false;
 		canEnpassant = false;
+		attackingKing = false;
 		identity = "rook";
 		row = x;
 		col = y;
@@ -80,6 +81,9 @@ public class Bishop extends ChessPiece{
 		int j = col+1;
 		for (int i = row+1; i < 8 && j < 8; i++,j++) {
 			if(!board[i][j].player.equals("neutral")) {
+				if (board[i][j].identity.equals("king") && !board[i][j].player.equals(player)) {
+					board[row][col].attackingKing = true;
+				}
 				board[i][j].takenOrAttacked = true;
 				break;
 			}
@@ -89,6 +93,9 @@ public class Bishop extends ChessPiece{
 		j = col-1;
 		for (int i = row+1; i < 8 && j > -1; i++,j--) {
 			if(!board[i][j].player.equals("neutral")) {
+				if (board[i][j].identity.equals("king") && !board[i][j].player.equals(player)) {
+					board[row][col].attackingKing = true;
+				}
 				board[i][j].takenOrAttacked = true;
 				break;
 			}
@@ -98,6 +105,9 @@ public class Bishop extends ChessPiece{
 		j = col+1;
 		for(int i = row-1; i > -1 && j < 8; i--,j++) {
 			if(!board[i][j].player.equals("neutral")) {
+				if (board[i][j].identity.equals("king") && !board[i][j].player.equals(player)) {
+					board[row][col].attackingKing = true;
+				}
 				board[i][j].takenOrAttacked = true;
 				break;
 			}
@@ -107,6 +117,9 @@ public class Bishop extends ChessPiece{
 		j = col-1;
 		for(int i = row-1; i > -1 && j > -1; i--,j--) {
 			if(!board[i][j].player.equals("neutral")) {
+				if (board[i][j].identity.equals("king") && !board[i][j].player.equals(player)) {
+					board[row][col].attackingKing = true;
+				}
 				board[i][j].takenOrAttacked = true;
 				break;
 			}

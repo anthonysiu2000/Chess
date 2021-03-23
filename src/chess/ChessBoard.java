@@ -135,32 +135,36 @@ public class ChessBoard {
 		//Implements king castling from either side of the board
 		if(board[row][col].identity.equals("king")) {
 			//Implements white king castling to g1
-			if (board[row][col].player.equals("white") && Drow == 7 && Dcol == 6 && board[row][col].hasMoved == false && board[7][7].hasMoved == false) {
+			if (board[row][col].player.equals("white") && Drow == 7 && Dcol == 6) {
 				board[Drow][Dcol] = board[row][col];
 				board[row][col] = new EmptyTile(row, col);
 				board[7][5] = board[7][7];
 				board[7][7] = new EmptyTile(7, 7);
+				return;
 			}
 			//Implements white king castling to c1
-			else if (board[row][col].player.equals("white") && Drow == 7 && Dcol == 2 && board[row][col].hasMoved == false && board[7][0].hasMoved == false) {
+			else if (board[row][col].player.equals("white") && Drow == 7 && Dcol == 2) {
 				board[Drow][Dcol] = board[row][col];
 				board[row][col] = new EmptyTile(row, col);
 				board[7][3] = board[7][0];
 				board[7][0] = new EmptyTile(7, 0);
+				return;
 			}
 			//Implements black king castling to g8
-			else if (board[row][col].player.equals("black") && Drow == 0 && Dcol == 6 && board[row][col].hasMoved == false && board[0][7].hasMoved == false) {
+			else if (board[row][col].player.equals("black") && Drow == 0 && Dcol == 6) {
 				board[Drow][Dcol] = board[row][col];
 				board[row][col] = new EmptyTile(row, col);
 				board[0][5] = board[0][7];
 				board[0][7] = new EmptyTile(0, 7);
+				return;
 			}
 			//Implements black king castling to c8
-			else if (board[row][col].player.equals("black") && Drow == 0 && Dcol == 2 && board[row][col].hasMoved == false && board[0][0].hasMoved == false) {
+			else if (board[row][col].player.equals("black") && Drow == 0 && Dcol == 2) {
 				board[Drow][Dcol] = board[row][col];
 				board[row][col] = new EmptyTile(row, col);
 				board[0][3] = board[0][0];
 				board[0][0] = new EmptyTile(0, 0);
+				return;
 			}
 		}
 		
@@ -261,11 +265,11 @@ public class ChessBoard {
 	public void resetAttacked(int x, int y) {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				if (board[i][j].getPlayer().equals("white") || board[i][j].getPlayer().equals("black")) {
-					if (i != x && j != y) {
-						board[i][j].takenOrAttacked = true;
-					} else {
+				if (board[i][j].player.equals("white") || board[i][j].player.equals("black")) {
+					if (i == x && j == y) {
 						board[i][j].takenOrAttacked = false;
+					} else {
+						board[i][j].takenOrAttacked = true;
 					}
 				} else {
 					board[i][j].takenOrAttacked = false;
@@ -276,6 +280,7 @@ public class ChessBoard {
 	
 	//Method called to check if a player is in check
 	public boolean inCheck(String player) {
+		//gets king indexes
 		int kingRow = -1;
 		int kingCol = -1;
 		for (int i = 0; i < 8; i++) {
@@ -286,6 +291,8 @@ public class ChessBoard {
 				}
 			}
 		}
+		//assigns takenOrAttacked values
+		resetAttacked(kingRow, kingCol);
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
 				if (!board[i][j].player.equals(player) && !board[i][j].player.equals("neutral")) {
@@ -294,17 +301,46 @@ public class ChessBoard {
 			}
 		}
 		if (board[kingRow][kingCol].takenOrAttacked) {
-			resetAttacked(kingRow, kingCol);
 			return true;
 		} else {
-			resetAttacked(kingRow, kingCol);
 			return false;
 		}
 	}
 	
 	//Method called to check if a player is in checkmate
 	public boolean inCheckmate(String player) {
-		return false;
+		//gets king indexes
+		int kingRow = -1;
+		int kingCol = -1;
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				if (board[i][j].player.equals(player) && board[i][j].identity.equals("king")) {
+					kingRow = i;
+					kingCol = j;
+				}
+			}
+		}
+		
+		//king must be in check
+		if (!inCheck(player)) {
+			return false;
+		}
+		//king's surroundings must be taken or attacked
+		for (int i = -1; i < 2; i++) {
+			for (int j = -1; j < 2; j++) {
+				if (kingRow+i < 0 || kingRow+i > 7 || kingCol+j < 0 || kingCol+j > 7) {
+					continue;
+				}
+				if (!board[kingRow+i][kingCol+j].takenOrAttacked) {
+					return false;
+				}
+			}
+		}
+		//Attacking piece cannot be taken
+		
+		//Path between attacking piece and king cannot be blocked, unless attacking piece is knight
+		
+		return true;
 	}
 	
 }

@@ -7,6 +7,7 @@ public class King extends ChessPiece{
 		takenOrAttacked = false;
 		hasMoved = false;
 		canEnpassant = false;
+		attackingKing = false;
 		identity = "king";
 		row = x;
 		col = y;
@@ -27,16 +28,28 @@ public class King extends ChessPiece{
 		}
 		//Check if you want to castle to column 'a' rook
 		else if ((row == x) && (col - y) == 2 && hasMoved == false) {
+			//Checks if rook is at the corner and not moved
 			if (board[row][0].identity.equals("rook") && board[row][0].hasMoved == false) {
-				return true;
+				//Checks if spaces between king and rook are empty
+				if (board[row][1].player.equals("neutral") && board[row][2].player.equals("neutral") && board[row][3].player.equals("neutral")) {
+					return true;
+				} else {
+					return false;
+				}
 			} else {
 				return false;
 			}
 		}
 		//Check if you want to castle to column 'h' rook
 		else if ((row == x) && (col - y) == -2 && hasMoved == false) {
+			//Checks if rook is at the corner and not moved
 			if (board[row][7].identity.equals("rook") && board[row][7].hasMoved == false) {
-				return true;
+				//Checks if spaces between king and rook are empty
+				if (board[row][5].player.equals("neutral") && board[row][6].player.equals("neutral")) {
+					return true;
+				} else {
+					return false;
+				}
 			} else {
 				return false;
 			}
@@ -53,6 +66,10 @@ public class King extends ChessPiece{
 			for (int j = -1; j < 2; j++) {
 				if ((row + i) < 0 || (row + i) > 7 || (col + j) < 0 || (col + j) > 7) {
 					continue;
+				}
+
+				if (board[row + i][col + j].identity.equals("king") && !board[row + i][col + j].player.equals(player)) {
+					board[row][col].attackingKing = true;
 				}
 				board[row + i][col + j].takenOrAttacked = true;
 			}

@@ -7,6 +7,7 @@ public class Rook extends ChessPiece{
 		takenOrAttacked = true;
 		hasMoved = false;
 		canEnpassant = false;
+		attackingKing = false;
 		identity = "rook";
 		row = x;
 		col = y;
@@ -74,6 +75,9 @@ public class Rook extends ChessPiece{
 		//parses through all spaces right and sets them to attacked until meeting a player or enemy piece
 		for (int i = row+1; i < 8; i++) {
 			if(!board[i][col].player.equals("neutral")) {
+				if (board[i][col].identity.equals("king") && !board[i][col].player.equals(player)) {
+					board[row][col].attackingKing = true;
+				}
 				board[i][col].takenOrAttacked = true;
 				break;
 			}
@@ -82,6 +86,9 @@ public class Rook extends ChessPiece{
 		//parses through all spaces left and sets them to attacked until meeting a player or enemy piece
 		for (int i = row-1; i >-1; i--) {
 			if(!board[i][col].player.equals("neutral")) {
+				if (board[i][col].identity.equals("king") && !board[i][col].player.equals(player)) {
+					board[row][col].attackingKing = true;
+				}
 				board[i][col].takenOrAttacked = true;
 				break;
 			}
@@ -90,6 +97,9 @@ public class Rook extends ChessPiece{
 		//parses through all spaces down and sets them to attacked until meeting a player or enemy piece
 		for (int i = col+1; i < 8; i++) {
 			if(!board[row][i].player.equals("neutral")) {
+				if (board[row][i].identity.equals("king") && !board[row][i].player.equals(player)) {
+					board[row][col].attackingKing = true;
+				}
 				board[row][i].takenOrAttacked = true;
 				break;
 			}
@@ -98,6 +108,9 @@ public class Rook extends ChessPiece{
 		//parses through all spaces up and sets them to attacked until meeting a player or enemy piece
 		for (int i = col-1; i > -1; i--) {
 			if(!board[row][i].player.equals("neutral")) {
+				if (board[row][i].identity.equals("king") && !board[row][i].player.equals(player)) {
+					board[row][col].attackingKing = true;
+				}
 				board[row][i].takenOrAttacked = true;
 				break;
 			}

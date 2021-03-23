@@ -13,10 +13,8 @@ public abstract class ChessPiece {
 	public boolean hasMoved;
 	//Used to determine if a pawn can be taken by enpassant
 	public boolean canEnpassant;
-	//method to obtain player variable 
-	public String getPlayer() {
-		return player;
-	}
+	//method used to determine which pieces are checking the king
+	public boolean attackingKing;
 	//method to print piece to board
 	public abstract void print();
 	//method to check if move is legal

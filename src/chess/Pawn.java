@@ -7,6 +7,7 @@ public class Pawn extends ChessPiece {
 		takenOrAttacked = true;
 		hasMoved = false;
 		canEnpassant = false;
+		attackingKing = false;
 		identity = "pawn";
 		row = x;
 		col = y;
@@ -83,16 +84,29 @@ public class Pawn extends ChessPiece {
 	public ChessPiece[][] attacking(ChessPiece[][] board) {
 		if (player.equals("white")) {
 			if (col < 7) {
+				if (board[row-1][col+1].identity.equals("king") && !board[row-1][col+1].player.equals(player)) {
+					board[row][col].attackingKing = true;
+				}
 				board[row-1][col+1].takenOrAttacked = true;
 			} 
 			if (col > 0) {
+				if (board[row-1][col-1].identity.equals("king") && !board[row-1][col-1].player.equals(player)) {
+					board[row][col].attackingKing = true;
+				}
 				board[row-1][col-1].takenOrAttacked = true;
 			}
+			
 		} else {
 			if (col < 7) {
+				if (board[row+1][col+1].identity.equals("king") && !board[row+1][col+1].player.equals(player)) {
+					board[row][col].attackingKing = true;
+				}
 				board[row+1][col+1].takenOrAttacked = true;
 			} 
 			if (col > 0) {
+				if (board[row+1][col-1].identity.equals("king") && !board[row+1][col-1].player.equals(player)) {
+					board[row][col].attackingKing = true;
+				}
 				board[row+1][col-1].takenOrAttacked = true;
 			}
 			

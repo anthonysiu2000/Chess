@@ -7,6 +7,7 @@ public class Queen extends ChessPiece{
 		takenOrAttacked = true;
 		hasMoved = false;
 		canEnpassant = false;
+		attackingKing = false;
 		identity = "queen";
 		row = x;
 		col = y;
@@ -125,6 +126,9 @@ public class Queen extends ChessPiece{
 		int j = col+1;
 		for (int i = row+1; i < 8 && j < 8; i++,j++) {
 			if(!board[i][j].player.equals("neutral")) {
+				if (board[i][j].identity.equals("king") && !board[i][j].player.equals(player)) {
+					board[row][col].attackingKing = true;
+				}
 				board[i][j].takenOrAttacked = true;
 				break;
 			}
@@ -134,6 +138,9 @@ public class Queen extends ChessPiece{
 		j = col-1;
 		for (int i = row+1; i < 8 && j > -1; i++,j--) {
 			if(!board[i][j].player.equals("neutral")) {
+				if (board[i][j].identity.equals("king") && !board[i][j].player.equals(player)) {
+					board[row][col].attackingKing = true;
+				}
 				board[i][j].takenOrAttacked = true;
 				break;
 			}
@@ -143,6 +150,9 @@ public class Queen extends ChessPiece{
 		j = col+1;
 		for(int i = row-1; i > -1 && j < 8; i--,j++) {
 			if(!board[i][j].player.equals("neutral")) {
+				if (board[i][j].identity.equals("king") && !board[i][j].player.equals(player)) {
+					board[row][col].attackingKing = true;
+				}
 				board[i][j].takenOrAttacked = true;
 				break;
 			}
@@ -152,6 +162,9 @@ public class Queen extends ChessPiece{
 		j = col-1;
 		for(int i = row-1; i > -1 && j > -1; i--,j--) {
 			if(!board[i][j].player.equals("neutral")) {
+				if (board[i][j].identity.equals("king") && !board[i][j].player.equals(player)) {
+					board[row][col].attackingKing = true;
+				}
 				board[i][j].takenOrAttacked = true;
 				break;
 			}
@@ -162,6 +175,9 @@ public class Queen extends ChessPiece{
 		//parses through all spaces right and sets them to attacked until meeting a player or enemy piece
 		for (int i = row+1; i < 8; i++) {
 			if(!board[i][col].player.equals("neutral")) {
+				if (board[i][col].identity.equals("king") && !board[i][col].player.equals(player)) {
+					board[row][col].attackingKing = true;
+				}
 				board[i][col].takenOrAttacked = true;
 				break;
 			}
@@ -170,6 +186,9 @@ public class Queen extends ChessPiece{
 		//parses through all spaces left and sets them to attacked until meeting a player or enemy piece
 		for (int i = row-1; i >-1; i--) {
 			if(!board[i][col].player.equals("neutral")) {
+				if (board[i][col].identity.equals("king") && !board[i][col].player.equals(player)) {
+					board[row][col].attackingKing = true;
+				}
 				board[i][col].takenOrAttacked = true;
 				break;
 			}
@@ -178,6 +197,9 @@ public class Queen extends ChessPiece{
 		//parses through all spaces down and sets them to attacked until meeting a player or enemy piece
 		for (int i = col+1; i < 8; i++) {
 			if(!board[row][i].player.equals("neutral")) {
+				if (board[row][i].identity.equals("king") && !board[row][i].player.equals(player)) {
+					board[row][col].attackingKing = true;
+				}
 				board[row][i].takenOrAttacked = true;
 				break;
 			}
@@ -186,6 +208,9 @@ public class Queen extends ChessPiece{
 		//parses through all spaces up and sets them to attacked until meeting a player or enemy piece
 		for (int i = col-1; i > -1; i--) {
 			if(!board[row][i].player.equals("neutral")) {
+				if (board[row][i].identity.equals("king") && !board[row][i].player.equals(player)) {
+					board[row][col].attackingKing = true;
+				}
 				board[row][i].takenOrAttacked = true;
 				break;
 			}
