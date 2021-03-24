@@ -364,13 +364,6 @@ public class ChessBoard {
 						return true;
 					}
 					
-					//resets takenOrAttacked for king not allowed to move between attacking piece and itself
-					resetAttacked(kingRow, kingCol, false);
-					if (player.equals("white")) {
-						setAttack("black", false);
-					} else {
-						setAttack("white", false);
-					}
 					
 					
 					//checks for horizontal movement
@@ -380,6 +373,18 @@ public class ChessBoard {
 							if((Math.abs(kingRow-i) == 1) || (Math.abs(kingCol-j) == 1)) {
 								return true;
 							} else {
+								
+
+								//resets takenOrAttacked for king not allowed to move between attacking piece and itself
+								resetAttacked(kingRow, kingCol, false);
+								if (player.equals("white")) {
+									setAttack("black", false);
+								} else {
+									setAttack("white", false);
+								}
+								
+								
+								
 								if (i > kingRow) {
 									boolean continueThing = false;
 									for (int k = kingRow+1; k < i; k++) {
@@ -441,6 +446,14 @@ public class ChessBoard {
 							if(Math.abs(kingRow-i) == 1) {
 								return true;
 							} else {
+								//resets takenOrAttacked for king not allowed to move between attacking piece and itself
+								resetAttacked(kingRow, kingCol, false);
+								if (player.equals("white")) {
+									setAttack("black", false);
+								} else {
+									setAttack("white", false);
+								}
+								
 								if (i > kingRow && j > kingCol) {
 									boolean continueThing = false;
 									int k = kingCol+1;
