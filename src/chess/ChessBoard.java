@@ -513,9 +513,6 @@ public class ChessBoard {
 					}
 				}
 			}
-			if (attackingPieceCantTake) {
-				continue;
-			}
 		}
 		//if attacking piece can be taken, then we make sure if we do attack the attacking piece, the king is not in check
 		if (attackingPieceCantTake) {
