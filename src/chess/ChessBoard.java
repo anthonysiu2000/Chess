@@ -294,7 +294,7 @@ public class ChessBoard {
 		}
 		//assigns takenOrAttacked values
 		resetAttacked(kingRow, kingCol, true);
-		setAttack(player);
+		setAttack(player, true);
 		
 		if (board[kingRow][kingCol].takenOrAttacked) {
 			return true;
@@ -303,10 +303,13 @@ public class ChessBoard {
 		}
 	}
 	//method called to calculate takenOrAttacked by a certain side
-	public void setAttack(String player) {
+	public void setAttack(String player, boolean kingAttack) {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
 				if (!board[i][j].player.equals(player) && !board[i][j].player.equals("neutral")) {
+					if (!kingAttack && board[i][j].identity.equals("king")) {
+						continue;
+					}
 					board = board[i][j].attacking(board);
 				}
 			}
@@ -346,9 +349,9 @@ public class ChessBoard {
 		//Attacking piece(s) cannot be taken
 		resetAttacked(kingRow, kingCol, false);
 		if (player.equals("white")) {
-			setAttack("black");
+			setAttack("black", true);
 		} else {
-			setAttack("white");
+			setAttack("white", true);
 		}
 		boolean attackingPieceCantTake = false;
 		for (int i = 0; i < 8; i++) {
@@ -360,6 +363,15 @@ public class ChessBoard {
 					if (board[i][j].identity.equals("pawn") || board[i][j].identity.equals("knight")) {
 						return true;
 					}
+					
+					//resets takenOrAttacked for king not allowed to move between attacking piece and itself
+					resetAttacked(kingRow, kingCol, false);
+					if (player.equals("white")) {
+						setAttack("black", false);
+					} else {
+						setAttack("white", false);
+					}
+					
 					
 					//checks for horizontal movement
 					if (board[i][j].identity.equals("rook") || board[i][j].identity.equals("queen")) {
