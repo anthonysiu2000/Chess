@@ -1,5 +1,6 @@
 package chess;
 /**
+ * The EmptyTile class is a subclass extended from the superclass ChessPiece.java
  * 
  * @author 		Anthony Siu
  * @author 		Benjamin Lee
@@ -10,7 +11,9 @@ package chess;
 public class EmptyTile extends ChessPiece{
 	private boolean showTile;
 	/**
-	 * 
+	 * The EmptyTile is a chess piece on the chess board that represents a blank space.
+	 * The object EmptyTile is displayed as white or black as strings "##" or "  " and
+	 * has various attributes to it from ChessPiece.java. 
 	 * 
 	 * @param x			the row number of the piece, in chess terms, it is numbers 1 to 8
 	 * @param y			the column number of the piece, in chess terms, it is letters a to h

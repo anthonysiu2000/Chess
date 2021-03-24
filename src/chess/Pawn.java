@@ -1,5 +1,6 @@
 package chess;
 /**
+ * The Pawn class is a subclass extended from the superclass ChessPiece.java
  * 
  * @author 		Anthony Siu
  * @author 		Benjamin Lee

@@ -1,5 +1,6 @@
 package chess;
 /**
+ * The King class is a subclass extended from the superclass ChessPiece.java
  * 
  * @author 		Anthony Siu
  * @author 		Benjamin Lee

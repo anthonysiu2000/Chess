@@ -1,5 +1,6 @@
 package chess;
 /**
+ * ChessBoard is a class that constructs the chessboard with all pieces and blank spaces.
  * 
  * @author 		Anthony Siu
  * @author 		Benjamin Lee

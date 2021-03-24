@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader; 
 
 /**
+ * Chess is a class that manages the inputs of the player and outputs through the console.
  * 
  * @author 		Anthony Siu
  * @author 		Benjamin Lee

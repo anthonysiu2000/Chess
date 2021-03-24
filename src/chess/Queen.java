@@ -1,5 +1,6 @@
 package chess;
 /**
+ * The Queen class is a subclass extended from the superclass ChessPiece.java
  * 
  * @author 		Benjamin Lee
  * @author		Anthony Siu
