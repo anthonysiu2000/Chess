@@ -1,7 +1,26 @@
 package chess;
-
+/**
+ * 
+ * @author 		Anthony Siu
+ * @author 		Benjamin Lee
+ * @version		%I% %G%
+ * @since		1.2
+ *
+ */
 public class Bishop extends ChessPiece{
 	//Constructor
+	
+	/**
+	 * A bishop is a chess piece on the chess board.
+	 * It moves in a diagonal line and will be placed on the board at proper places.
+	 * The object bishop does not return any values, but instead has various attributes to it.
+	 * 
+	 * @param owner			sets the player to be the owner
+	 * @param x				the row the bishop is placed on
+	 * @param y				the column the bishop is placed on
+	 * @see ChessPiece
+	 */
+	
 	public Bishop(String owner, int x, int y) {
 		player = owner;
 		takenOrAttacked = true;
@@ -13,6 +32,9 @@ public class Bishop extends ChessPiece{
 		col = y;
 	}
 	//Prints piece to console
+	/**
+	 * 
+	 */
 	public void print() {
 		if (player.equals("white")) {
 			System.out.print("wB ");
@@ -21,6 +43,9 @@ public class Bishop extends ChessPiece{
 		}
 	}
 	//checks legality of a move
+	/**
+	 * 
+	 */
 	public boolean isLegal(ChessPiece[][] board, int x, int y) {
 		//cannot take your own piece
 		if (board[x][y].player.equals(player)) {
@@ -76,6 +101,10 @@ public class Bishop extends ChessPiece{
 		return false;
 	}
 	//sets board tiles to either being attacked or not, to determine check/checkmate
+	
+	/**
+	 * 
+	 */
 	public ChessPiece[][] attacking(ChessPiece[][] board) {
 		//parses through all spaces south east and sets them to attacked until meeting a player or enemy piece
 		int j = col+1;

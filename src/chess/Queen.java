@@ -1,7 +1,20 @@
 package chess;
-
+/**
+ * 
+ * @author 		Benjamin Lee
+ * @author		Anthony Siu
+ * @version		%I% %G%
+ * @since		1.2
+ *
+ */
 public class Queen extends ChessPiece{
 	//Constructor
+	/**
+	 * 
+	 * @param owner
+	 * @param x
+	 * @param y
+	 */
 	public Queen(String owner, int x, int y) {
 		player = owner;
 		takenOrAttacked = true;
@@ -13,6 +26,9 @@ public class Queen extends ChessPiece{
 		col = y;
 	}
 	//Prints piece to console
+	/**
+	 * 
+	 */
 	public void print() {
 		if (player.equals("white")) {
 			System.out.print("wQ ");
@@ -21,6 +37,9 @@ public class Queen extends ChessPiece{
 		}
 	}
 	//checks legality of a move
+	/**
+	 * 
+	 */
 	public boolean isLegal(ChessPiece[][] board, int x, int y) {
 		//cannot take your own piece
 		if (board[x][y].player.equals(player)) {
@@ -121,6 +140,9 @@ public class Queen extends ChessPiece{
 		return false;
 	}
 	//sets board tiles to either being attacked or not, to determine check/checkmate
+	/**
+	 * 
+	 */
 	public ChessPiece[][] attacking(ChessPiece[][] board) {
 		//parses through all spaces south east and sets them to attacked until meeting a player or enemy piece
 		int j = col+1;

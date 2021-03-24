@@ -1,7 +1,20 @@
 package chess;
-
+/**
+ * 
+ * @author 		Anthony Siu
+ * @author 		Benjamin Lee
+ * @version		%I% %G%
+ * @since		1.2
+ *
+ */
 public class King extends ChessPiece{
 	//Constructor
+	/**
+	 * 
+	 * @param owner
+	 * @param x
+	 * @param y
+	 */
 	public King(String owner, int x, int y) {
 		player = owner;
 		takenOrAttacked = false;
@@ -13,6 +26,9 @@ public class King extends ChessPiece{
 		col = y;
 	}
 	//Prints piece to console
+	/**
+	 * 
+	 */
 	public void print() {
 		if (player.equals("white")) {
 			System.out.print("wK ");
@@ -21,6 +37,9 @@ public class King extends ChessPiece{
 		}
 	}
 	//checks legality of a move
+	/**
+	 * 
+	 */
 	public boolean isLegal(ChessPiece[][] board, int x, int y) {
 		//cannot take your own piece
 		if (board[x][y].player.equals(player)) {
@@ -61,6 +80,9 @@ public class King extends ChessPiece{
 		return true;
 	}
 	//sets board tiles to either being attacked or not, to determine check/checkmate
+	/**
+	 * 
+	 */
 	public ChessPiece[][] attacking(ChessPiece[][] board) {
 		for (int i = -1; i < 2; i++) {
 			for (int j = -1; j < 2; j++) {

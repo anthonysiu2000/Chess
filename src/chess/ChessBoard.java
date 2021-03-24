@@ -1,5 +1,12 @@
 package chess;
-
+/**
+ * 
+ * @author 		Anthony Siu
+ * @author 		Benjamin Lee
+ * @version		%I% %G%
+ * @since		1.2
+ *
+ */
 public class ChessBoard {
 	
 	//Fields stored by a ChessBoard object
@@ -41,6 +48,10 @@ public class ChessBoard {
 	}
 	
 	//Method to duplicate a chessboard object 
+	/**
+	 * 
+	 * @param BOARD
+	 */
 	public void clone(ChessBoard BOARD) {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
@@ -97,6 +108,9 @@ public class ChessBoard {
 	
 	
 	//Method called when we want to display the board to console
+	/**
+	 * 
+	 */
 	public void display() {
 		for(int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
@@ -108,6 +122,10 @@ public class ChessBoard {
 	}
 	
 	//Method called to execute an input instruction after finding instruction is legal
+	/**
+	 * 
+	 * @param input
+	 */
 	public void execute(String[] input) {
 		int col = input[0].charAt(0) - 97;
 		int row = 7 - (input[0].charAt(1) - 49);
@@ -265,6 +283,12 @@ public class ChessBoard {
 	}
 	
 	//Method called to reset taken/attacked values of the board
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 * @param setUnitsAttacked
+	 */
 	public void resetAttacked(int x, int y, boolean setUnitsAttacked) {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
@@ -287,6 +311,11 @@ public class ChessBoard {
 	}
 	
 	//Method called to check if a player is in check
+	/**
+	 * 
+	 * @param player
+	 * @return
+	 */
 	public boolean inCheck(String player) {
 		//gets king indexes
 		int kingRow = -1;
@@ -310,6 +339,11 @@ public class ChessBoard {
 		}
 	}
 	//method called to calculate takenOrAttacked by a certain side
+	/**
+	 * 
+	 * @param player
+	 * @param kingAttack
+	 */
 	public void setAttack(String player, boolean kingAttack) {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
@@ -325,6 +359,11 @@ public class ChessBoard {
 	
 	
 	//Method called to check if a player is in checkmate
+	/**
+	 * 
+	 * @param player
+	 * @return
+	 */
 	public boolean inCheckmate(String player) {
 		//gets king indexes
 		int kingRow = -1;
