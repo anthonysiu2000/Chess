@@ -68,6 +68,12 @@ public class Chess {
 		while (true) {
 			//displays board
 			BOARD.display();
+			//sets takenOrAttacked values as according to the player, to help castling legality
+			if (BOARD.whiteTurn) {
+				BOARD.inCheck("white");
+			} else {
+				BOARD.inCheck("black");
+			}
 			
 			while (true) {
 				//gets input

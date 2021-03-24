@@ -54,7 +54,7 @@ public class Pawn extends ChessPiece {
 			}
 		}
 		else{
-			//if black pawn is at starting point, you can move forwad two spaces
+			//if black pawn is at starting point, you can move forward two spaces
 			if(row == 1) {
 				//can only move to a space that is "neutral"
 				if ((col == y) && (row-x) == -2 && board[x][y].player.equals("neutral") && board[x-1][y].player.equals("neutral")){

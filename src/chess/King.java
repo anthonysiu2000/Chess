@@ -31,7 +31,7 @@ public class King extends ChessPiece{
 			//Checks if rook is at the corner and not moved
 			if (board[row][0].identity.equals("rook") && board[row][0].hasMoved == false) {
 				//Checks if spaces between king and rook are empty
-				if (board[row][1].player.equals("neutral") && board[row][2].player.equals("neutral") && board[row][3].player.equals("neutral")) {
+				if (!board[row][1].takenOrAttacked && !board[row][2].takenOrAttacked && !board[row][3].takenOrAttacked) {
 					return true;
 				} else {
 					return false;
@@ -44,8 +44,8 @@ public class King extends ChessPiece{
 		else if ((row == x) && (col - y) == -2 && hasMoved == false) {
 			//Checks if rook is at the corner and not moved
 			if (board[row][7].identity.equals("rook") && board[row][7].hasMoved == false) {
-				//Checks if spaces between king and rook are empty
-				if (board[row][5].player.equals("neutral") && board[row][6].player.equals("neutral")) {
+				//Checks if spaces between king and rook are empty and not being attacked
+				if (!board[row][5].takenOrAttacked && !board[row][6].takenOrAttacked) {
 					return true;
 				} else {
 					return false;
