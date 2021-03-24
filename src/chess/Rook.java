@@ -118,10 +118,10 @@ public class Rook extends ChessPiece{
 	 * <p>
 	 * This includes:
 	 * <ul>
-	 * <il>Parses through all spaces right and sets them to attacked until meeting a player or enemy piece
-	 * <il>Parses through all spaces left and sets them to attacked until meeting a player or enemy piece
-	 * <il>Parses through all spaces down and sets them to attacked until meeting a player or enemy piece
-	 * <il>Parses through all spaces up and sets them to attacked until meeting a player or enemy piece
+	 * <li>Parses through all spaces right and sets them to attacked until meeting a player or enemy piece
+	 * <li>Parses through all spaces left and sets them to attacked until meeting a player or enemy piece
+	 * <li>Parses through all spaces down and sets them to attacked until meeting a player or enemy piece
+	 * <li>Parses through all spaces up and sets them to attacked until meeting a player or enemy piece
 	 * <ul>
 	 * 
 	 * @return board

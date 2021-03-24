@@ -126,10 +126,10 @@ public class Bishop extends ChessPiece{
 	 * <p>
 	 * This includes:
 	 * <ul>
-	 * <il>Parses through all spaces south east and sets them to attacked until meeting a player or enemy piece
-	 * <il>Parses through all spaces south west and sets them to attacked until meeting a player or enemy piece
-	 * <il>Parses through all spaces north east and sets them to attacked until meeting a player or enemy piece
-	 * <il>Parses through all spaces north west and sets them to attacked until meeting a player or enemy piece
+	 * <li>Parses through all spaces south east and sets them to attacked until meeting a player or enemy piece
+	 * <li>Parses through all spaces south west and sets them to attacked until meeting a player or enemy piece
+	 * <li>Parses through all spaces north east and sets them to attacked until meeting a player or enemy piece
+	 * <li>Parses through all spaces north west and sets them to attacked until meeting a player or enemy piece
 	 * <ul>
 	 * 
 	 * @return board
