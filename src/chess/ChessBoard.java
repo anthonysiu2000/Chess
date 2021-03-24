@@ -354,12 +354,11 @@ public class ChessBoard {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
 				//finds attacking piece(s)
-				if (board[i][j].attackingKing && !board[i][j].player.equals(player) && board[i][j].takenOrAttacked) {
+				if (board[i][j].attackingKing && !board[i][j].player.equals(player) && !board[i][j].takenOrAttacked) {
 					
 					//Path between attacking piece(s) and king cannot be blocked, unless attacking piece is knight or pawn
 					if (board[i][j].identity.equals("pawn") || board[i][j].identity.equals("knight")) {
-						attackingPieceCantTake = true;
-						continue;
+						return true;
 					}
 					
 					//checks for horizontal movement
@@ -367,8 +366,7 @@ public class ChessBoard {
 						if ((kingRow-i) == 0 || (kingCol-j) == 0) {
 							//there must be at least one space between attacking piece and king
 							if((Math.abs(kingRow-i) == 1) || (Math.abs(kingCol-j) == 1)) {
-								attackingPieceCantTake = true;
-								continue;
+								return true;
 							} else {
 								if (i > kingRow) {
 									boolean continueThing = false;
@@ -381,8 +379,7 @@ public class ChessBoard {
 									if (continueThing) {
 										continue;
 									}
-									attackingPieceCantTake = true;
-									continue;
+									return true;
 								} else if (i < kingRow) {
 									boolean continueThing = false;
 									for (int k = kingRow-1; k > i; k--) {
@@ -394,8 +391,7 @@ public class ChessBoard {
 									if (continueThing) {
 										continue;
 									}
-									attackingPieceCantTake = true;
-									continue;
+									return true;
 								} else if (j > kingCol) {
 									boolean continueThing = false;
 									for (int k = kingCol+1; k < j; k++) {
@@ -407,9 +403,7 @@ public class ChessBoard {
 									if (continueThing) {
 										continue;
 									}
-									attackingPieceCantTake = true;
-									continue;
-									
+									return true;
 								} else if (j < kingCol) {
 									boolean continueThing = false;
 									for (int k = kingCol-1; k > j; k--) {
@@ -421,8 +415,7 @@ public class ChessBoard {
 									if (continueThing) {
 										continue;
 									}
-									attackingPieceCantTake = true;
-									continue;
+									return true;
 									
 								}
 							}
@@ -434,8 +427,7 @@ public class ChessBoard {
 						if (Math.abs(kingRow-i) == Math.abs(kingCol-j)) {
 							//there must be at least one space between attacking piece and king
 							if(Math.abs(kingRow-i) == 1) {
-								attackingPieceCantTake = true;
-								continue;
+								return true;
 							} else {
 								if (i > kingRow && j > kingCol) {
 									boolean continueThing = false;
@@ -448,8 +440,7 @@ public class ChessBoard {
 									if (continueThing) {
 										continue;
 									}
-									attackingPieceCantTake = true;
-									continue;
+									return true;
 								} else if (i > kingRow && j < kingCol) {
 									boolean continueThing = false;
 									int k = kingCol-1;
@@ -461,9 +452,7 @@ public class ChessBoard {
 									if (continueThing) {
 										continue;
 									}
-									attackingPieceCantTake = true;
-									continue;
-									
+									return true;
 								} else if (i < kingRow && j > kingCol) {
 									boolean continueThing = false;
 									int k = kingCol+1;
@@ -475,9 +464,7 @@ public class ChessBoard {
 									if (continueThing) {
 										continue;
 									}
-									attackingPieceCantTake = true;
-									continue;
-									
+									return true;
 								} else if (i < kingRow && j < kingCol) {
 									boolean continueThing = false;
 									int k = kingCol-1;
@@ -489,9 +476,7 @@ public class ChessBoard {
 									if (continueThing) {
 										continue;
 									}
-									attackingPieceCantTake = true;
-									continue;
-									
+									return true;
 								}
 							}
 						}
@@ -503,10 +488,10 @@ public class ChessBoard {
 			}
 		}
 		//if attacking piece can be taken, then we make sure if we do attack the attacking piece, the king is not in check
-		if (!attackingPieceCantTake) {
-			return false;
-		} else {
+		if (attackingPieceCantTake) {
 			return true;
+		} else {
+			return false;
 		}
 	}
 	
