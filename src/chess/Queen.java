@@ -10,10 +10,15 @@ package chess;
 public class Queen extends ChessPiece{
 	//Constructor
 	/**
+	 * A queen is a chess piece on the chess board.
+	 * It moves in either a straight line or a diagonal line and will be placed on
+	 * the board at proper places.
+	 * The object queen is displayed as white or black as strings "wQ" or "bQ" and
+	 * has various attributes to it from ChessPiece.java.
 	 * 
-	 * @param owner
-	 * @param x
-	 * @param y
+	 * @param owner		sets the player to be the owner
+	 * @param x			the row number of the piece, in chess terms, it is numbers 1 to 8
+	 * @param y			the column number of the piece, in chess terms, it is letters a to h
 	 */
 	public Queen(String owner, int x, int y) {
 		player = owner;
@@ -25,9 +30,12 @@ public class Queen extends ChessPiece{
 		row = x;
 		col = y;
 	}
-	//Prints piece to console
 	/**
+	 * Prints piece to console. Consists of "wQ" or "bQ" strings
+	 * to indicate white and black queens on the board, respectively.
 	 * 
+	 * @see ChessPiece#ChessPiece()
+	 * @since 1.0
 	 */
 	public void print() {
 		if (player.equals("white")) {
@@ -36,9 +44,30 @@ public class Queen extends ChessPiece{
 			System.out.print("bQ ");
 		}
 	}
-	//checks legality of a move
 	/**
+	 * Method that implements isLegal and checks the legality of a move, specifically for
+	 * a queen. There are many conditions that need to be fulfilled in order for the move
+	 * to be declared legal. The spaces in between the destination and starting space need
+	 * to be checked for pieces in between, otherwise be declared illegal.
+	 * <p>
+	 * These factors include:
+	 * <ul>
+	 * <li>Cannot take your own piece
+	 * <li>Check if the movement of the queen is in a straight line
+	 * <li>If only moving one, already checked if player piece is at destination, so assume true
+	 * <li>Check if there are any pieces in between when moving down
+	 * <li>Check if there are any pieces in between when moving up
+	 * <li>Check if there are any pieces in between when moving right
+	 * <li>Check if there are any pieces in between when moving left
+	 * <li>Check if the movement of the queen is in a diagonal line
+	 * <li>Check if there are any pieces in between when moving diagonal (south east)
+	 * <li>Check if there are any pieces in between when moving diagonal (south west)
+	 * <li>Check if there are any pieces in between when moving diagonal (north east)
+	 * <li>Check if there are any pieces in between when moving diagonal (north west)
+	 * <li>If no pieces are in between, move is successful
+	 * <ul>
 	 * 
+	 * @see ChessPiece#isLegal(ChessPiece[][], int, int)
 	 */
 	public boolean isLegal(ChessPiece[][] board, int x, int y) {
 		//cannot take your own piece

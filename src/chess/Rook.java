@@ -8,12 +8,15 @@ package chess;
  *
  */
 public class Rook extends ChessPiece{
-	//Constructor
 	/**
+	 * A rook is a chess piece on the chess board.
+	 * It moves in a horizontal line and will be placed on the board at proper places.
+	 * The object rook is displayed as white or black as strings "wR" or "bR" and
+	 * has various attributes to it from ChessPiece.java.
 	 * 
-	 * @param owner
-	 * @param x
-	 * @param y
+	 * @param owner		sets the player to be the owner
+	 * @param x			the row number of the piece, in chess terms, it is numbers 1 to 8
+	 * @param y			the column number of the piece, in chess terms, it is letters a to h
 	 */
 	public Rook(String owner, int x, int y) {
 		player = owner;
@@ -25,9 +28,12 @@ public class Rook extends ChessPiece{
 		row = x;
 		col = y;
 	}
-	//Prints piece to console
 	/**
+	 * Prints piece to console. Consists of "wR" or "bR" strings
+	 * to indicate white and black rooks on the board, respectively.
 	 * 
+	 * @see ChessPiece#ChessPiece()
+	 * @since 1.0
 	 */
 	public void print() {
 		if (player.equals("white")) {
@@ -36,9 +42,25 @@ public class Rook extends ChessPiece{
 			System.out.print("bR ");
 		}
 	}
-	//checks legality of a move
 	/**
+	 * Method that implements isLegal and checks the legality of a move, specifically for
+	 * a rook. There are many conditions that need to be fulfilled in order for the move
+	 * to be declared legal. The spaces in between the destination and starting space need
+	 * to be checked for pieces in between, otherwise be declared illegal.
+	 * <p>
+	 * These factors include:
+	 * <ul>
+	 * <li>Cannot take your own piece
+	 * <li>Check if the movement of the rook is in a straight line
+	 * <li>If only moving one, already checked if player piece is at destination, so assume true
+	 * <li>Check if there are any pieces in between when moving down
+	 * <li>Check if there are any pieces in between when moving up
+	 * <li>Check if there are any pieces in between when moving right
+	 * <li>Check if there are any pieces in between when moving left
+	 * <li>If no pieces are in between, move is successful
+	 * <ul>
 	 * 
+	 * @see ChessPiece#isLegal(ChessPiece[][], int, int)
 	 */
 	public boolean isLegal(ChessPiece[][] board, int x, int y) {
 		//cannot take your own piece

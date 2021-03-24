@@ -4,17 +4,17 @@ package chess;
  * @author 		Anthony Siu
  * @author 		Benjamin Lee
  * @version		%I% %G%
- * @since		1.2
+ * @since		1.0
  *
  */
 public class EmptyTile extends ChessPiece{
-	//You show "##" if the empty tile is black, and "  " if it's white
 	private boolean showTile;
-	//Constructor
 	/**
 	 * 
-	 * @param x
-	 * @param y
+	 * 
+	 * @param x			the row number of the piece, in chess terms, it is numbers 1 to 8
+	 * @param y			the column number of the piece, in chess terms, it is letters a to h
+	 * @see ChessPiece#ChessPiece()
 	 */
 	public EmptyTile(int x, int y) {
 		if ((x+y) % 2 == 0) {
@@ -31,9 +31,13 @@ public class EmptyTile extends ChessPiece{
 		row = x;
 		col = y;
 	}
-	//Prints piece to console
 	/**
+	 * Prints piece to console. Consists of either "##" or "  " strings
+	 * to indicate black spaces and white spaces on the board, respectively.
+	 * Does not hold any pieces, rather neutral spaces that have nothing on it.
 	 * 
+	 * @see ChessPiece#ChessPiece()
+	 * @since 1.0
 	 */
 	public void print() {
 		if (showTile) {
@@ -42,11 +46,19 @@ public class EmptyTile extends ChessPiece{
 			System.out.print("   ");
 		}
 	}
-	//method that implements isLegal (will not be used)
+	/**
+	 * Method that implements isLegal (will not be used)
+	 * 
+	 * @see ChessPiece#isLegal(ChessPiece[][], int, int)
+	 */
 	public boolean isLegal(ChessPiece[][] board, int x, int y) {
 		return true;
 	}
-	//method that implements ChessPiece (will not be used)
+	/**
+	 * Method that implements ChessPiece (will not be used)
+	 * 
+	 * @see ChessPiece
+	 */
 	public ChessPiece[][] attacking(ChessPiece[][] board) {
 		return null;
 	}

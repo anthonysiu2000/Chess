@@ -7,17 +7,16 @@ package chess;
  * @since		1.0
  *
  */
-public class Bishop extends ChessPiece{
-	//Constructor
-	
+public class Bishop extends ChessPiece{	
 	/**
 	 * A bishop is a chess piece on the chess board.
 	 * It moves in a diagonal line and will be placed on the board at proper places.
-	 * The object bishop does not return any values, but instead has various attributes to it.
+	 * The object bishop is displayed as white or black as strings "wB" or "bB" and
+	 * has various attributes to it from ChessPiece.java.
 	 * 
-	 * @param owner			sets the player to be the owner
-	 * @param x				the row the bishop is placed on
-	 * @param y				the column the bishop is placed on
+	 * @param owner		sets the player to be the owner
+	 * @param x			the row number of the piece, in chess terms, it is numbers 1 to 8
+	 * @param y			the column number of the piece, in chess terms, it is letters a to h
 	 * @see ChessPiece
 	 */
 	
@@ -31,9 +30,12 @@ public class Bishop extends ChessPiece{
 		row = x;
 		col = y;
 	}
-	//Prints piece to console
 	/**
+	 * Prints piece to console. Consists of "wB" or "bB" strings
+	 * to indicate white and black bishops on the board, respectively.
 	 * 
+	 * @see ChessPiece#ChessPiece()
+	 * @since 1.0
 	 */
 	public void print() {
 		if (player.equals("white")) {
@@ -42,9 +44,25 @@ public class Bishop extends ChessPiece{
 			System.out.print("bB ");
 		}
 	}
-	//checks legality of a move
 	/**
+	 * Method that implements isLegal and checks the legality of a move, specifically for
+	 * a bishop. There are many conditions that need to be fulfilled in order for the move
+	 * to be declared legal. The spaces in between the destination and starting space need
+	 * to be checked for pieces in between, otherwise be declared illegal.
+	 * <p>
+	 * These factors include:
+	 * <ul>
+	 * <li>Cannot take your own piece
+	 * <li>Check if the movement of the bishop is in a diagonal line
+	 * <li>If only moving one, already checked if player piece is at destination, so assume true
+	 * <li>Check if there are any pieces in between when moving diagonal (south east)
+	 * <li>Check if there are any pieces in between when moving diagonal (south west)
+	 * <li>Check if there are any pieces in between when moving diagonal (north east)
+	 * <li>Check if there are any pieces in between when moving diagonal (north west)
+	 * <li>If no pieces are in between, move is successful
+	 * <ul>
 	 * 
+	 * @see ChessPiece#isLegal(ChessPiece[][], int, int)
 	 */
 	public boolean isLegal(ChessPiece[][] board, int x, int y) {
 		//cannot take your own piece

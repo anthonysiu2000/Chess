@@ -8,12 +8,16 @@ package chess;
  *
  */
 public class Pawn extends ChessPiece {
-	//Constructor
 	/**
+	 * A pawn is a chess piece on the chess board.
+	 * It moves in a straight line, unless capturing pieces and will be placed on
+	 * the board at proper places.
+	 * The object pawn is displayed as white or black as strings "wp" or "bp" and
+	 * has various attributes to it from ChessPiece.java.
 	 * 
-	 * @param owner
-	 * @param x
-	 * @param y
+	 * @param owner		sets the player to be the owner
+	 * @param x			the row number of the piece, in chess terms, it is numbers 1 to 8
+	 * @param y			the column number of the piece, in chess terms, it is letters a to h
 	 */
 	public Pawn(String owner,int x, int y) {
 		player = owner;
@@ -25,9 +29,12 @@ public class Pawn extends ChessPiece {
 		row = x;
 		col = y;
 	}
-	//Prints piece to console
 	/**
+	 * Prints piece to console. Consists of "wp" or "bp" strings
+	 * to indicate white and black pawns on the board, respectively.
 	 * 
+	 * @see ChessPiece#ChessPiece()
+	 * @since 1.0
 	 */
 	public void print() {
 		if (player.equals("white")) {
@@ -36,9 +43,31 @@ public class Pawn extends ChessPiece {
 			System.out.print("bp ");
 		}
 	}
-	//checks legality of a move
 	/**
+	 * Method that implements isLegal and checks the legality of a move, specifically for
+	 * a queen. There are many conditions that need to be fulfilled in order for the move
+	 * to be declared legal.
+	 * <p>
+	 * These factors include:
+	 * <ul>
+	 * <li>Cannot take your own piece
+	 * <li>If white pawn is at starting point, you can move forward two spaces
+	 * <li>If white pawn can only move to a space that is "neutral"
+	 * <li>Other possible actions: white pawn moves forward one... (as long as its a neutral space)
+	 * <li>... or white pawn attacks at a diagonal
+	 * <li>Checks if space adjacent to white pawn is a space not neutral and not player, AKA an enemy piece
+	 * <li>Allows enpassant if in right row and previous move was black pawn up 2
+	 * <li>Invalid destination for white pawn
+	 * <li>If black pawn is at starting point, you can move forward two spaces
+	 * <li>If white pawn can only move to a space that is "neutral"
+	 * <li>Other possible actions: black pawn moves forward one... (as long as its a neutral space)
+	 * <li>... or black pawn attacks at a diagonal
+	 * <li>Checks if space adjacent to black pawn is a space not neutral and not player, AKA an enemy piece
+	 * <li>Allows enpassant if in right row and previous move was white pawn up 2
+	 * <li>Invalid destination for black pawn
+	 * <ul>
 	 * 
+	 * @see ChessPiece#isLegal(ChessPiece[][], int, int)
 	 */
 	public boolean isLegal(ChessPiece[][] board, int x, int y) {
 		//cannot take your own piece
