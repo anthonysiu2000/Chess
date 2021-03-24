@@ -402,11 +402,15 @@ public class ChessBoard {
 		boolean attackingPieceCantTake = false;
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				//finds attacking piece(s)
+				//finds attacking piece(s) that aren't attacked by any of the checked' players pieces
 				if (board[i][j].attackingKing && !board[i][j].player.equals(player) && !board[i][j].takenOrAttacked) {
 					
 					//Path between attacking piece(s) and king cannot be blocked, unless attacking piece is knight or pawn
 					if (board[i][j].identity.equals("pawn") || board[i][j].identity.equals("knight")) {
+						if (board[i][j].identity.equals("pawn")) {
+							attackingPieceCantTake = true;
+							continue;
+						}
 						return true;
 					}
 					
@@ -415,7 +419,8 @@ public class ChessBoard {
 						if ((kingRow-i) == 0 || (kingCol-j) == 0) {
 							//there must be at least one space between attacking piece and king
 							if((Math.abs(kingRow-i) == 1) || (Math.abs(kingCol-j) == 1)) {
-								return true;
+								attackingPieceCantTake = true;
+								continue;
 							} else {
 								
 
@@ -488,7 +493,8 @@ public class ChessBoard {
 						if (Math.abs(kingRow-i) == Math.abs(kingCol-j)) {
 							//there must be at least one space between attacking piece and king
 							if(Math.abs(kingRow-i) == 1) {
-								return true;
+								attackingPieceCantTake = true;
+								continue;
 							} else {
 								//resets takenOrAttacked for king not allowed to move between attacking piece and itself
 								resetAttacked(kingRow, kingCol, false);
@@ -550,15 +556,24 @@ public class ChessBoard {
 							}
 						}
 					}
+					
+					
+					
+					if (attackingPieceCantTake) {
+						resetAttacked(kingRow, kingCol, false);
+						setAttack(player, false);
+						if (board[i][j].takenOrAttacked) {
+							return true;
+						} else {
+							attackingPieceCantTake = false;
+							continue;
+						}
+					}
 				}
 			}
 		}
-		//if attacking piece can be taken, then we make sure if we do attack the attacking piece, the king is not in check
-		if (attackingPieceCantTake) {
-			return true;
-		} else {
-			return false;
-		}
+		return false;
+		
 	}
 	
 }
