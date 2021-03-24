@@ -132,42 +132,46 @@ public class ChessBoard {
 		if(board[row][col].identity.equals("king")) {
 			//Implements white king castling to g1
 			if (board[row][col].player.equals("white") && Drow == 7 && Dcol == 6) {
-				board[Drow][Dcol] = board[row][col];
-				board[row][col] = new EmptyTile(row, col);
 				board[7][5] = board[7][7];
+				board[7][5].hasMoved = true;
+				board[7][5].col = 5;
+				board[7][5].row = 7;
 				board[7][7] = new EmptyTile(7, 7);
-				return;
 			}
 			//Implements white king castling to c1
 			else if (board[row][col].player.equals("white") && Drow == 7 && Dcol == 2) {
-				board[Drow][Dcol] = board[row][col];
-				board[row][col] = new EmptyTile(row, col);
 				board[7][3] = board[7][0];
+				board[7][3].hasMoved = true;
+				board[7][3].col = 3;
+				board[7][3].row = 7;
 				board[7][0] = new EmptyTile(7, 0);
-				return;
 			}
 			//Implements black king castling to g8
 			else if (board[row][col].player.equals("black") && Drow == 0 && Dcol == 6) {
-				board[Drow][Dcol] = board[row][col];
-				board[row][col] = new EmptyTile(row, col);
 				board[0][5] = board[0][7];
+				board[0][5].hasMoved = true;
+				board[0][5].col = 5;
+				board[0][5].row = 0;
 				board[0][7] = new EmptyTile(0, 7);
-				return;
 			}
 			//Implements black king castling to c8
 			else if (board[row][col].player.equals("black") && Drow == 0 && Dcol == 2) {
-				board[Drow][Dcol] = board[row][col];
-				board[row][col] = new EmptyTile(row, col);
 				board[0][3] = board[0][0];
+				board[0][3].hasMoved = true;
+				board[0][3].col = 3;
+				board[0][3].row = 0;
 				board[0][0] = new EmptyTile(0, 0);
-				return;
 			}
 		}
 		
 		//Implements pawn promotion if a pawn gets to the end of a column, assigns canEnpassant, and implements enpassant if conditions are met
 		if (board[row][col].identity.equals("pawn") && board[row][col].player.equals("white") && Drow == 0){
 			//Checks input if its Q, R, N, B, or anything else, promotes pawn to requested piece, if no specified piece, becomes white queen
-			if(input[2].equals("Q")) {
+			if (input.length == 2) {
+				board[Drow][Dcol] = new Queen("white",Drow, Dcol);
+				board[row][col] = new EmptyTile(row, col);
+			}
+			else if(input[2].equals("Q")) {
 				board[Drow][Dcol] = new Queen("white",Drow, Dcol);
 				board[row][col] = new EmptyTile(row, col);
 			}
@@ -193,7 +197,11 @@ public class ChessBoard {
 			///Implements promotion for black pawns
 		if (board[row][col].identity.equals("pawn") && board[row][col].player.equals("black") && Drow == 7) {
 			//Checks input if its Q, R, N, B, or anything else, promotes pawn to requested piece, if no specified piece, becomes black queen
-			if(input[2].equals("Q")) {
+			if (input.length == 2) {
+				board[Drow][Dcol] = new Queen("black",Drow, Dcol);
+				board[row][col] = new EmptyTile(row, col);
+			}
+			else if(input[2].equals("Q")) {
 				board[Drow][Dcol] = new Queen("black",Drow, Dcol);
 				board[row][col] = new EmptyTile(row, col);
 			}
@@ -363,8 +371,6 @@ public class ChessBoard {
 					if (board[i][j].identity.equals("pawn") || board[i][j].identity.equals("knight")) {
 						return true;
 					}
-					
-					
 					
 					//checks for horizontal movement
 					if (board[i][j].identity.equals("rook") || board[i][j].identity.equals("queen")) {
