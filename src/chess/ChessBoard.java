@@ -558,7 +558,8 @@ public class ChessBoard {
 					}
 					
 					
-					
+
+					//if attacking piece can be taken only by the king, then determines if the king can legally take the attacking piece
 					if (attackingPieceCantTake) {
 						resetAttacked(kingRow, kingCol, false);
 						setAttack(player, false);
@@ -573,7 +574,6 @@ public class ChessBoard {
 			}
 		}
 		return false;
-		
 	}
 	
 }
