@@ -80,7 +80,6 @@ public class Chess {
 		return input;
 	}
 	
-	//main method
 	/**
 	 * This method does the outputs of the console to tell the player of the status of the game or the status of their input.
 	 * It constitutes a display and outputs of the chess game.
@@ -88,7 +87,19 @@ public class Chess {
 	 * This method displays the board and manages the turns of white and black pieces, illegal moves, and inputs to draw and resign.
 	 * There is also outputs from the console on whether white or black wins the game or if there is a draw based on inputs to draw,
 	 * resign, or checkmates. Stalemates are not accounted for.
-	 * 
+	 * <p>
+	 * These include:
+	 * <ul>
+	 * <il>Displays board, sets takenOrAttacked values as according to the player, to help castling legality
+	 * <il>Resign
+	 * <il>Draw confirm
+	 * <il>Draw request
+	 * <il>Checks if selected unit is the player's and if the move is legal
+	 * <il>Executes the move and updates board
+	 * <il>Checks if the move puts the same player in check
+	 * <il>Break statement used when either player resigns/draws
+	 * <il>Changes turn and checks for check/checkmate
+	 * <ul>
 	 * @param args
 	 * @throws IOException
 	 */

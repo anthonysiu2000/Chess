@@ -121,8 +121,6 @@ public class ChessBoard {
 		return;
 	}
 	
-	
-	//Method called when we want to display the board to console
 	/**
 	 * The method called when we want to display the board to console.
 	 * This outputs the board of characters to the console in the form
@@ -141,8 +139,37 @@ public class ChessBoard {
 		System.out.print(" a  b  c  d  e  f  g  h\n");
 	}
 	
-	//Method called to execute an input instruction after finding instruction is legal
 	/**
+	 * The method called to execute an input instruction after finding instruction is legal.
+	 * After every move made by a player, this method replaces the objects on the chessboard
+	 * with the proper pieces based on their input. The method changes values of objects
+	 * whether an enemy piece captured or not as well as execute special moves. There are 
+	 * special moves that require extra verification to check whether requirements are met.
+	 * These are special moves that aren't in the normal moveset of pieces, such as the king,
+	 * pawn, rook and include castling, promotion, enpassant.
+	 * <p>
+	 * The factors and moves being checked in this method include:
+	 * <ul>
+	 * <il>Finds any pieces at the beginning of white's turn in row 4 and sets their canEnpassant to false
+	 * <il>Finds any pieces at the beginning of black's turn in row 3 and sets their canEnpassant to false
+	 * <il>Implements king castling from either side of the board
+	 * <il>Implements white king castling to g1
+	 * <il>Implements white king castling to c1
+	 * <il>Implements black king castling to g8
+	 * <il>Implements black king castling to c8
+	 * <il>Implements pawn promotion if a white pawn gets to the end of a column, assigns canEnpassant, and
+	 * 	   implements enpassant if conditions are met
+	 * <il>Checks input if its Q, R, N, B, or anything else, promotes white pawn to requested piece, if no
+	 * 	   specified piece, becomes white queen
+	 * <il>Implements promotion for black pawns
+	 * <il>Checks input if its Q, R, N, B, or anything else, promotes black pawn to requested piece, if no
+	 * 	   specified piece, becomes black queen
+	 * <il>Implements canEmpassant for white pawns that enter row 4
+	 * <il>Implements canEmpassant for black pawns that enter row 3
+	 * <il>Implements enpassant for white pawns on black pawns who moved in the most recent turn
+	 * <il>Implements enpassant for black pawns on white pawns who moved in the most recent turn
+	 * <il>Replaces the destination tile with the piece, and the origin tile with an empty tile
+	 * <ul>
 	 * 
 	 * @param input
 	 */
@@ -200,7 +227,7 @@ public class ChessBoard {
 		
 		//Implements pawn promotion if a pawn gets to the end of a column, assigns canEnpassant, and implements enpassant if conditions are met
 		if (board[row][col].identity.equals("pawn") && board[row][col].player.equals("white") && Drow == 0){
-			//Checks input if its Q, R, N, B, or anything else, promotes pawn to requested piece, if no specified piece, becomes white queen
+			//Checks input if its Q, R, N, B, or anything else, promotes white pawn to requested piece, if no specified piece, becomes white queen
 			if (input.length == 2) {
 				board[Drow][Dcol] = new Queen("white",Drow, Dcol);
 				board[row][col] = new EmptyTile(row, col);
@@ -228,9 +255,9 @@ public class ChessBoard {
 			}
 			return;
 		}
-			///Implements promotion for black pawns
+		///Implements promotion for black pawns
 		if (board[row][col].identity.equals("pawn") && board[row][col].player.equals("black") && Drow == 7) {
-			//Checks input if its Q, R, N, B, or anything else, promotes pawn to requested piece, if no specified piece, becomes black queen
+			//Checks input if its Q, R, N, B, or anything else, promotes black pawn to requested piece, if no specified piece, becomes black queen
 			if (input.length == 2) {
 				board[Drow][Dcol] = new Queen("black",Drow, Dcol);
 				board[row][col] = new EmptyTile(row, col);
@@ -258,7 +285,7 @@ public class ChessBoard {
 			}
 			return;
 		}
-			//Implements canEmpassant for white pawns that enter row 4
+		//Implements canEmpassant for white pawns that enter row 4
 		if (board[row][col].identity.equals("pawn") && board[row][col].player.equals("white") && Drow == 4 && row == 6) {
 			board[Drow][Dcol] = board[row][col];
 			board[Drow][Dcol].col = Dcol;
@@ -267,7 +294,7 @@ public class ChessBoard {
 			board[row][col] = new EmptyTile(row, col);
 			return;
 		}
-			//Implements canEmpassant for black pawns that enter row 3
+		//Implements canEmpassant for black pawns that enter row 3
 		if (board[row][col].identity.equals("pawn") && board[row][col].player.equals("black") && Drow == 3 && row == 1) {
 			board[Drow][Dcol] = board[row][col];
 			board[Drow][Dcol].col = Dcol;
@@ -276,7 +303,7 @@ public class ChessBoard {
 			board[row][col] = new EmptyTile(row, col);
 			return;
 		}
-			//Implements enpassant for white pawns on black pawns who moved in the most recent turn
+		//Implements enpassant for white pawns on black pawns who moved in the most recent turn
 		if (board[row][col].identity.equals("pawn") && Drow == 2 && row == 3 && (Dcol == col+1 || Dcol == col-1) && (board[row][col-1].canEnpassant == true || board[row][col+1].canEnpassant == true)){
 			//Moves white pawn to destination
 			board[Drow][Dcol] = board[row][col];
@@ -287,7 +314,7 @@ public class ChessBoard {
 			board[row][Dcol] = new EmptyTile(row, Dcol);
 			return;
 		}
-			//Implements enpassant for black pawns on white pawns who moved in the most recent turn
+		//Implements enpassant for black pawns on white pawns who moved in the most recent turn
 		if (board[row][col].identity.equals("pawn") && Drow == 5 && row == 4 && (Dcol == col+1 || Dcol == col-1) && (board[row][col-1].canEnpassant == true || board[row][col+1].canEnpassant == true)){
 			//Moves black pawn to destination
 			board[Drow][Dcol] = board[row][col];
@@ -307,8 +334,11 @@ public class ChessBoard {
 			return;
 	}
 	
-	//Method called to reset taken/attacked values of the board
 	/**
+	 * The method called to reset taken/attacked values of the board. All values on the board
+	 * are reset of their values of attackingKing as well as takenOrAttacked for all spaces.
+	 * But if found to have the value of setUnitsAttacked to true, takenOrAttacked will be set
+	 * to true.
 	 * 
 	 * @param x
 	 * @param y
@@ -335,8 +365,10 @@ public class ChessBoard {
 		}
 	}
 	
-	//Method called to check if a player is in check
 	/**
+	 * The method called to check if a player is in check. This is used to
+	 * check whether a piece is attacking the king, thus creating check for
+	 * the enemy side.
 	 * 
 	 * @param player
 	 * @return
@@ -363,8 +395,11 @@ public class ChessBoard {
 			return false;
 		}
 	}
-	//method called to calculate takenOrAttacked by a certain side
 	/**
+	 * The method called to calculate takenOrAttacked by a certain side.
+	 * It has already been checked whether the spaces being attacked are blocked
+	 * off by another piece. Finally it checks if one of the spaces is an enemy
+	 * king. If this is found to be true, the piece is set to be attacking the king.
 	 * 
 	 * @param player
 	 * @param kingAttack
@@ -381,13 +416,37 @@ public class ChessBoard {
 			}
 		}
 	}
-	
-	
-	//Method called to check if a player is in checkmate
+		
 	/**
-	 * 
-	 * @param player
-	 * @return
+	 * The method called to check if a player is in checkmate. This is one of the ways to 
+	 * officially end the game, the other ways are by drawing or resignation since stalemates
+	 * are not added in this version. The method first goes through the indexes of the king and
+	 * surrounding spaces and checks if those spaces, with the king first, are being attacked.
+	 * If the king is being attacked by a rook, queen, or bishop, the method checks if there are
+	 * any pieces in between it and the king to ensure that it is a valid attack/check. This is 
+	 * not the case for pawns and knights, as they don't have restrictions on pieces being in the
+	 * way.
+	 * <p>
+	 * These factors and actions in the method are listed as:
+	 * <ul>
+	 * <il>Gets king indexes
+	 * <il>King must be in check
+	 * <il>King's surroundings must be taken or attacked
+	 * <il>Attacking piece(s) cannot be taken
+	 * <il>Finds attacking piece(s) that aren't attacked by any of the checked' players pieces
+	 * <il>Path between attacking piece(s) and king cannot be blocked, unless attacking piece is knight
+	 * 	   or pawn
+	 * <il>Checks for horizontal movement there must be at least one space between attacking piece and
+	 * 	   king
+	 * <il>Resets takenOrAttacked for king not allowed to move between attacking piece and itself
+	 * <il>Checks for diagonal movement there must be at least one space between attacking piece and
+	 * 	   king
+	 * <il>Resets takenOrAttacked for king not allowed to move between attacking piece and itself
+	 * <il>If attacking piece can be taken only by the king, then determines if the king can legally
+	 * 	   take the attacking piece
+	 * <ul>
+	 * @param 		player
+	 * @return		boolean on whether checkmate is achieved for either color, white or black
 	 */
 	public boolean inCheckmate(String player) {
 		//gets king indexes

@@ -170,7 +170,21 @@ public class Queen extends ChessPiece{
 	}
 	//sets board tiles to either being attacked or not, to determine check/checkmate
 	/**
+	 * Checks if the rook is attacking the enemy king, thus creating check for the other player.
+	 * <p>
+	 * This includes:
+	 * <ul>
+	 * <il>Parses through all spaces south east and sets them to attacked until meeting a player or enemy piece
+	 * <il>Parses through all spaces south west and sets them to attacked until meeting a player or enemy piece
+	 * <il>Parses through all spaces north east and sets them to attacked until meeting a player or enemy piece
+	 * <il>Parses through all spaces north west and sets them to attacked until meeting a player or enemy piece
+	 * <il>Parses through all spaces right and sets them to attacked until meeting a player or enemy piece
+	 * <il>Parses through all spaces left and sets them to attacked until meeting a player or enemy piece
+	 * <il>Parses through all spaces down and sets them to attacked until meeting a player or enemy piece
+	 * <il>Parses through all spaces up and sets them to attacked until meeting a player or enemy piece
+	 * <ul>
 	 * 
+	 * @return board
 	 */
 	public ChessPiece[][] attacking(ChessPiece[][] board) {
 		//parses through all spaces south east and sets them to attacked until meeting a player or enemy piece

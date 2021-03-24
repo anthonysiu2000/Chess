@@ -66,6 +66,11 @@ public class Knight extends ChessPiece{
 		return false;
 	}
 	//sets board tiles to either being attacked or not, to determine check/checkmate
+	/**
+	 * Checks if the knight is attacking the enemy king, thus creating check for the other player.
+	 * 
+	 * @return board
+	 */
 	public ChessPiece[][] attacking(ChessPiece[][] board) {
 		for (int i = -2; i < 3; i++) {
 			for (int j = -2; j < 3; j++) {

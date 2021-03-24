@@ -142,7 +142,9 @@ public class Pawn extends ChessPiece {
 	}
 	//sets board tiles to either being attacked or not, to determine check/checkmate
 	/**
+	 * Checks if the pawn is attacking the enemy king, thus creating check for the other player.
 	 * 
+	 * @return board
 	 */
 	public ChessPiece[][] attacking(ChessPiece[][] board) {
 		if (player.equals("white")) {
