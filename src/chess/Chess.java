@@ -4,7 +4,16 @@ import java.io.IOException;
 import java.io.InputStreamReader; 
 
 public class Chess {
-	
+	/**
+	 * @param board
+	 * @return
+	 * @throws IOException
+	 * @author 		Anthony Siu
+	 * @author 		Benjamin Lee
+	 * @version		%I% %G%
+	 * @since		1.2
+	 *
+	 */
 	//method called to ask for and store user input
 	public static String[] getMove(ChessBoard board) throws IOException {
 		//variables to store user input
@@ -59,6 +68,11 @@ public class Chess {
 	}
 	
 	//main method
+	/**
+	 * 
+	 * @param args
+	 * @throws IOException
+	 */
 	public static void main(String[] args) throws IOException {
 
 		ChessBoard BOARD = new ChessBoard();

@@ -1,7 +1,20 @@
 package chess;
-
+/**
+ * 
+ * @author 		Anthony Siu
+ * @author 		Benjamin Lee
+ * @version		%I% %G%
+ * @since		1.2
+ *
+ */
 public class Pawn extends ChessPiece {
 	//Constructor
+	/**
+	 * 
+	 * @param owner
+	 * @param x
+	 * @param y
+	 */
 	public Pawn(String owner,int x, int y) {
 		player = owner;
 		takenOrAttacked = true;
@@ -13,6 +26,9 @@ public class Pawn extends ChessPiece {
 		col = y;
 	}
 	//Prints piece to console
+	/**
+	 * 
+	 */
 	public void print() {
 		if (player.equals("white")) {
 			System.out.print("wp ");
@@ -21,6 +37,9 @@ public class Pawn extends ChessPiece {
 		}
 	}
 	//checks legality of a move
+	/**
+	 * 
+	 */
 	public boolean isLegal(ChessPiece[][] board, int x, int y) {
 		//cannot take your own piece
 		if (board[x][y].player.equals(player)) {
@@ -81,6 +100,9 @@ public class Pawn extends ChessPiece {
 		}
 	}
 	//sets board tiles to either being attacked or not, to determine check/checkmate
+	/**
+	 * 
+	 */
 	public ChessPiece[][] attacking(ChessPiece[][] board) {
 		if (player.equals("white")) {
 			if (col < 7) {

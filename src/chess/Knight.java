@@ -1,7 +1,20 @@
 package chess;
-
+/**
+ * 
+ * @author 		Benjamin Lee
+ * @author		Anthony Siu
+ * @version		%I% %G%
+ * @since		1.2
+ *
+ */
 public class Knight extends ChessPiece{
 	//Constructor
+	/**
+	 * 
+	 * @param owner
+	 * @param x
+	 * @param y
+	 */
 	public Knight(String owner, int x, int y) {
 		player = owner;
 		takenOrAttacked = true;
@@ -13,6 +26,9 @@ public class Knight extends ChessPiece{
 		col = y;
 	}
 	//Prints piece to console
+	/**
+	 * 
+	 */
 	public void print() {
 		if (player.equals("white")) {
 			System.out.print("wN ");
@@ -21,6 +37,9 @@ public class Knight extends ChessPiece{
 		}
 	}
 	//checks legality of a move
+	/**
+	 * 
+	 */
 	public boolean isLegal(ChessPiece[][] board, int x, int y) {
 		//cannot take your own piece
 		if (board[x][y].player.equals(player)) {
