@@ -47,7 +47,6 @@ public class ChessBoard {
 		whiteTurn = true;
 	}
 	
-	//Method to duplicate a chessboard object 
 	/**
 	 * Method to duplicate chessboard objects on the board.
 	 * It creates a new board based on the previous board
