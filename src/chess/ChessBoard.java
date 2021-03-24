@@ -4,7 +4,7 @@ package chess;
  * @author 		Anthony Siu
  * @author 		Benjamin Lee
  * @version		%I% %G%
- * @since		1.2
+ * @since		1.0
  *
  */
 public class ChessBoard {
@@ -49,8 +49,21 @@ public class ChessBoard {
 	
 	//Method to duplicate a chessboard object 
 	/**
+	 * Method to duplicate chessboard objects on the board.
+	 * It creates a new board based on the previous board
+	 * and the new inputs that change values on the board
+	 * spaces. The objects range from being pawns, kings,
+	 * and empty spaces.
+	 * <p>
+	 * Every time a new valid input is read by the program,
+	 * a new board will be made with new objects and values
+	 * attached.
 	 * 
 	 * @param BOARD
+	 * @see #display()
+	 * @see ChessPiece()
+	 * @see ChessBoard#board
+	 * @since 1.0
 	 */
 	public void clone(ChessBoard BOARD) {
 		for (int i = 0; i < 8; i++) {
@@ -111,7 +124,12 @@ public class ChessBoard {
 	
 	//Method called when we want to display the board to console
 	/**
+	 * The method called when we want to display the board to console.
+	 * This outputs the board of characters to the console in the form
+	 * of spaces, hashtags, letters, and numbers.
 	 * 
+	 * @see ChessBoard#clone()
+	 * @since 1.0
 	 */
 	public void display() {
 		for(int i = 0; i < 8; i++) {

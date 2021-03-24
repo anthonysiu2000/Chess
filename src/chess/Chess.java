@@ -3,16 +3,29 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader; 
 
+/**
+ * 
+ * @author 		Anthony Siu
+ * @author 		Benjamin Lee
+ * @version		%I% %G%
+ * @since		1.0
+ *
+ */
 public class Chess {
 	/**
-	 * @param board
-	 * @return
-	 * @throws IOException
-	 * @author 		Anthony Siu
-	 * @author 		Benjamin Lee
-	 * @version		%I% %G%
-	 * @since		1.2
-	 *
+	 * The method for getting commands through the console. The method getMove takes inputs and processes them into
+	 * commands for the program to do moves in chess on the board.
+	 * <p>
+	 * This method listens for an input in the console, upon receiving said input, it completes commands based on
+	 * the parameters it is given. This is done through the BufferedReader and InputStreamReader commands.
+	 * 
+	 * @param board			the chess board created for moves to be called for
+	 * @return				the input, if legal
+	 * @throws IOException	if an input or output exception occurred
+	 *						input errors to remember, but not implemented yet
+	 *						3rd input can only be N,R,Q,B if pawn is entering last rank
+	 *						single input "draw" can only be allowed after a "draw?" by other player, 
+	 *						all of these errors are errors in input, not illegal moves, which are implemented elsewhere
 	 */
 	//method called to ask for and store user input
 	public static String[] getMove(ChessBoard board) throws IOException {
@@ -69,6 +82,12 @@ public class Chess {
 	
 	//main method
 	/**
+	 * This method does the outputs of the console to tell the player of the status of the game or the status of their input.
+	 * It constitutes a display and outputs of the chess game.
+	 * <p>
+	 * This method displays the board and manages the turns of white and black pieces, illegal moves, and inputs to draw and resign.
+	 * There is also outputs from the console on whether white or black wins the game or if there is a draw based on inputs to draw,
+	 * resign, or checkmates. Stalemates are not accounted for.
 	 * 
 	 * @param args
 	 * @throws IOException

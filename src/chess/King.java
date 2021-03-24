@@ -4,7 +4,7 @@ package chess;
  * @author 		Anthony Siu
  * @author 		Benjamin Lee
  * @version		%I% %G%
- * @since		1.2
+ * @since		1.0
  *
  */
 public class King extends ChessPiece{

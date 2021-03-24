@@ -4,7 +4,7 @@ package chess;
  * @author 		Benjamin Lee
  * @author		Anthony Siu
  * @version		%I% %G%
- * @since		1.2
+ * @since		1.0
  *
  */
 public class Queen extends ChessPiece{
