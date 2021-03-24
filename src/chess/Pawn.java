@@ -62,10 +62,16 @@ public class Pawn extends ChessPiece {
 			//... or attacks at a diagonal
 			else if((row-x) == 1 && Math.abs(col-y) == 1) {
 				// checks if it is a space not neutral and not player, AKA an enemy piece
-				if((!board[x][y].player.equals("neutral")) && (!board[x][y].player.equals(player))) {
-					return true;
-				} else {
+				if(board[x][y].player.equals(player)) {
 					return false;
+				} else if (board[x][y].player.equals("neutral")) {
+					//allows enpassant if in right row and previous move was pawn up 2
+					if (row == 3 && board[3][y].canEnpassant) {
+						return true;
+					}
+					return false;
+				} else {
+					return true;
 				}
 			} else {
 				//invalid destination
@@ -88,10 +94,16 @@ public class Pawn extends ChessPiece {
 			//... or attacks at a diagonal
 			else if((row-x) == -1 && Math.abs(col-y) == 1) {
 				// checks if it is a space not neutral and not player, AKA an enemy piece
-				if((!board[x][y].player.equals("neutral")) && (!board[x][y].player.equals(player))) {
-					return true;
-				} else {
+				if(board[x][y].player.equals(player)) {
 					return false;
+				} else if (board[x][y].player.equals("neutral")) {
+					//allows enpassant if in right row and previous move was pawn up 2
+					if (row == 4 && board[4][y].canEnpassant) {
+						return true;
+					}
+					return false;
+				} else {
+					return true;
 				}
 			} else {
 				//invalid destination

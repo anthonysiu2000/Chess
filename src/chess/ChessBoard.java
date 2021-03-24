@@ -58,6 +58,7 @@ public class ChessBoard {
 				if (BOARD.board[i][j].player.equals("white")) {
 					if (BOARD.board[i][j].identity.equals("pawn")) {
 						board[i][j] = new Pawn("white", i, j);
+						board[i][j].canEnpassant = BOARD.board[i][j].canEnpassant;
 					}
 					if (BOARD.board[i][j].identity.equals("queen")) {
 						board[i][j] = new Queen("white", i, j);
@@ -79,6 +80,7 @@ public class ChessBoard {
 				} else if (BOARD.board[i][j].player.equals("black")){
 					if (BOARD.board[i][j].identity.equals("pawn")) {
 						board[i][j] = new Pawn("black", i, j);
+						board[i][j].canEnpassant = BOARD.board[i][j].canEnpassant;
 					}
 					if (BOARD.board[i][j].identity.equals("queen")) {
 						board[i][j] = new Queen("black", i, j);
@@ -133,14 +135,11 @@ public class ChessBoard {
 		int Drow = 7 - (input[1].charAt(1) - 49);
 		
 		//Finds any pieces at the beginning of white's turn in row 4 and sets their canEnpassant to false
-		for(int i = 0; i < 8; i++){
-			if(board[row][col].player.equals("white")) {
-				board[4][i].canEnpassant = false;
-			}
-		}
 		//Finds any pieces at the beginning of black's turn in row 3 and sets their canEnpassant to false
 		for(int i = 0; i < 8; i++){
-			if(board[row][col].player.equals("black")) {
+			if(whiteTurn) {
+				board[4][i].canEnpassant = false;
+			} else {
 				board[3][i].canEnpassant = false;
 			}
 		}
@@ -244,6 +243,8 @@ public class ChessBoard {
 			//Implements canEmpassant for white pawns that enter row 4
 		if (board[row][col].identity.equals("pawn") && board[row][col].player.equals("white") && Drow == 4 && row == 6) {
 			board[Drow][Dcol] = board[row][col];
+			board[Drow][Dcol].col = Dcol;
+			board[Drow][Dcol].row = Drow;
 			board[Drow][Dcol].canEnpassant = true;
 			board[row][col] = new EmptyTile(row, col);
 			return;
@@ -251,6 +252,8 @@ public class ChessBoard {
 			//Implements canEmpassant for black pawns that enter row 3
 		if (board[row][col].identity.equals("pawn") && board[row][col].player.equals("black") && Drow == 3 && row == 1) {
 			board[Drow][Dcol] = board[row][col];
+			board[Drow][Dcol].col = Dcol;
+			board[Drow][Dcol].row = Drow;
 			board[Drow][Dcol].canEnpassant = true;
 			board[row][col] = new EmptyTile(row, col);
 			return;
@@ -259,6 +262,8 @@ public class ChessBoard {
 		if (board[row][col].identity.equals("pawn") && Drow == 2 && row == 3 && (Dcol == col+1 || Dcol == col-1) && (board[row][col-1].canEnpassant == true || board[row][col+1].canEnpassant == true)){
 			//Moves white pawn to destination
 			board[Drow][Dcol] = board[row][col];
+			board[Drow][Dcol].col = Dcol;
+			board[Drow][Dcol].row = Drow;
 			board[row][col] = new EmptyTile(row, col);
 			//Takes away black pawn due to enpassant
 			board[row][Dcol] = new EmptyTile(row, Dcol);
@@ -268,6 +273,8 @@ public class ChessBoard {
 		if (board[row][col].identity.equals("pawn") && Drow == 5 && row == 4 && (Dcol == col+1 || Dcol == col-1) && (board[row][col-1].canEnpassant == true || board[row][col+1].canEnpassant == true)){
 			//Moves black pawn to destination
 			board[Drow][Dcol] = board[row][col];
+			board[Drow][Dcol].col = Dcol;
+			board[Drow][Dcol].row = Drow;
 			board[row][col] = new EmptyTile(row, col);
 			//Takes away white pawn due to enpassant
 			board[row][Dcol] = new EmptyTile(row, Dcol);
