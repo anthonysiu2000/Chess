@@ -195,7 +195,10 @@ public class Chess {
 			if (BOARD.whiteTurn) {
 				BOARD.whiteTurn = false;
 				if (BOARD.inCheckmate("black")) {
-					System.out.print("White Wins");
+					BOARD.display();
+					System.out.print("Checkmate\n");
+					System.out.print("White wins\n");
+					break;
 				}
 				if (BOARD.inCheck("black")) {
 					System.out.print("Check\n\n");
@@ -203,7 +206,10 @@ public class Chess {
 			} else {
 				BOARD.whiteTurn = true;
 				if (BOARD.inCheckmate("white")) {
+					BOARD.display();
+					System.out.print("Checkmate\n");
 					System.out.print("Black wins");
+					break;
 				}
 				if (BOARD.inCheck("white")) {
 					System.out.print("Check\n\n");

@@ -149,13 +149,17 @@ public class Pawn extends ChessPiece {
 				if (board[row-1][col+1].identity.equals("king") && !board[row-1][col+1].player.equals(player)) {
 					board[row][col].attackingKing = true;
 				}
-				board[row-1][col+1].takenOrAttacked = true;
+				if (!board[row-1][col+1].player.equals(player) && !board[row-1][col+1].player.equals("neutral")) {
+					board[row-1][col+1].takenOrAttacked = true;
+				}
 			} 
 			if (col > 0) {
 				if (board[row-1][col-1].identity.equals("king") && !board[row-1][col-1].player.equals(player)) {
 					board[row][col].attackingKing = true;
 				}
-				board[row-1][col-1].takenOrAttacked = true;
+				if (!board[row-1][col-1].player.equals(player) && !board[row-1][col-1].player.equals("neutral")) {
+					board[row-1][col-1].takenOrAttacked = true;
+				}
 			}
 			
 		} else {
@@ -163,13 +167,17 @@ public class Pawn extends ChessPiece {
 				if (board[row+1][col+1].identity.equals("king") && !board[row+1][col+1].player.equals(player)) {
 					board[row][col].attackingKing = true;
 				}
-				board[row+1][col+1].takenOrAttacked = true;
+				if (!board[row+1][col+1].player.equals(player) && !board[row+1][col+1].player.equals("neutral")) {
+					board[row+1][col+1].takenOrAttacked = true;
+				}
 			} 
 			if (col > 0) {
 				if (board[row+1][col-1].identity.equals("king") && !board[row+1][col-1].player.equals(player)) {
 					board[row][col].attackingKing = true;
 				}
-				board[row+1][col-1].takenOrAttacked = true;
+				if (!board[row+1][col-1].player.equals(player) && !board[row+1][col-1].player.equals("neutral")) {
+					board[row+1][col-1].takenOrAttacked = true;
+				}
 			}
 			
 		}

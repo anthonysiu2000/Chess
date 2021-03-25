@@ -24,7 +24,7 @@ public class ChessBoard {
 		}
 		for (int k = 0; k < 8; k ++) {
 			board[1][k] = new Pawn("black", 1, k); 
-			board[6][k] = new Pawn("white", 1, k); 
+			board[6][k] = new Pawn("white", 6, k); 
 		}
 		board[0][0] = new Rook("black", 0, 0);
 		board[0][7] = new Rook("black", 0, 7);
@@ -137,6 +137,7 @@ public class ChessBoard {
 					}
 				} else {
 					board[i][j] = new EmptyTile(i, j);
+					board[i][j].takenOrAttacked = BOARD.board[i][j].takenOrAttacked;
 				}
 			}
 		}
@@ -211,7 +212,12 @@ public class ChessBoard {
 				board[3][i].canEnpassant = false;
 			}
 		}
-		
+		//Resets the attacking king variable at the start of each execution
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				board[i][j].attackingKing = false;
+			}
+		}
 		//Implements king castling from either side of the board
 		if(board[row][col].identity.equals("king")) {
 			//Implements white king castling to g1
@@ -370,7 +376,6 @@ public class ChessBoard {
 	public void resetAttacked(int x, int y, boolean setUnitsAttacked) {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				board[i][j].attackingKing = false;
 				if (board[i][j].player.equals("white") || board[i][j].player.equals("black")) {
 					if (i == x && j == y) {
 						board[i][j].takenOrAttacked = false;
@@ -488,6 +493,8 @@ public class ChessBoard {
 		if (!inCheck(player)) {
 			return false;
 		}
+
+		
 		//king's surroundings must be taken or attacked
 		for (int i = -1; i < 2; i++) {
 			for (int j = -1; j < 2; j++) {
@@ -499,6 +506,8 @@ public class ChessBoard {
 				}
 			}
 		}
+
+		
 		//Attacking piece(s) cannot be taken
 		resetAttacked(kingRow, kingCol, false);
 		if (player.equals("white")) {
@@ -510,13 +519,27 @@ public class ChessBoard {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
 				//finds attacking piece(s) that aren't attacked by any of the checked' players pieces
-				if (board[i][j].attackingKing && !board[i][j].player.equals(player) && !board[i][j].takenOrAttacked) {
+				if (board[i][j].attackingKing && !board[i][j].player.equals(player)) {
+					
+
+					//resets takenOrAttacked for king not allowed to move between attacking piece and itself
+					resetAttacked(kingRow, kingCol, false);
+					if (player.equals("white")) {
+						setAttack("black", false);
+					} else {
+						setAttack("white", false);
+					}
+					if (board[i][j].takenOrAttacked) {
+						attackingPieceCantTake = true;
+					}
+					
+					
+					
 					
 					//Path between attacking piece(s) and king cannot be blocked, unless attacking piece is knight or pawn
 					if (board[i][j].identity.equals("pawn") || board[i][j].identity.equals("knight")) {
 						if (board[i][j].identity.equals("pawn")) {
 							attackingPieceCantTake = true;
-							continue;
 						}
 						return true;
 					}
@@ -527,20 +550,7 @@ public class ChessBoard {
 							//there must be at least one space between attacking piece and king
 							if((Math.abs(kingRow-i) == 1) || (Math.abs(kingCol-j) == 1)) {
 								attackingPieceCantTake = true;
-								continue;
 							} else {
-								
-
-								//resets takenOrAttacked for king not allowed to move between attacking piece and itself
-								resetAttacked(kingRow, kingCol, false);
-								if (player.equals("white")) {
-									setAttack("black", false);
-								} else {
-									setAttack("white", false);
-								}
-								
-								
-								
 								if (i > kingRow) {
 									boolean continueThing = false;
 									for (int k = kingRow+1; k < i; k++) {
@@ -598,18 +608,12 @@ public class ChessBoard {
 					//checks for diagonal movement
 					if (board[i][j].identity.equals("bishop") || board[i][j].identity.equals("queen")) {
 						if (Math.abs(kingRow-i) == Math.abs(kingCol-j)) {
+							
+							
 							//there must be at least one space between attacking piece and king
 							if(Math.abs(kingRow-i) == 1) {
 								attackingPieceCantTake = true;
-								continue;
 							} else {
-								//resets takenOrAttacked for king not allowed to move between attacking piece and itself
-								resetAttacked(kingRow, kingCol, false);
-								if (player.equals("white")) {
-									setAttack("black", false);
-								} else {
-									setAttack("white", false);
-								}
 								
 								if (i > kingRow && j > kingCol) {
 									boolean continueThing = false;
