@@ -24,8 +24,7 @@ public class ChessBoard {
 		}
 		for (int k = 0; k < 8; k ++) {
 			board[1][k] = new Pawn("black", 1, k); 
-			board[6][k] = new Pawn("white", 6, k);
-			
+			board[6][k] = new Pawn("white", 1, k); 
 		}
 		board[0][0] = new Rook("black", 0, 0);
 		board[0][7] = new Rook("black", 0, 7);
@@ -72,45 +71,69 @@ public class ChessBoard {
 					if (BOARD.board[i][j].identity.equals("pawn")) {
 						board[i][j] = new Pawn("white", i, j);
 						board[i][j].canEnpassant = BOARD.board[i][j].canEnpassant;
+						board[i][j].attackingKing = BOARD.board[i][j].attackingKing;
+						board[i][j].takenOrAttacked = BOARD.board[i][j].takenOrAttacked;
 					}
 					if (BOARD.board[i][j].identity.equals("queen")) {
 						board[i][j] = new Queen("white", i, j);
+						board[i][j].attackingKing = BOARD.board[i][j].attackingKing;
+						board[i][j].takenOrAttacked = BOARD.board[i][j].takenOrAttacked;
 					}
 					if (BOARD.board[i][j].identity.equals("knight")) {
 						board[i][j] = new Knight("white", i, j);
+						board[i][j].attackingKing = BOARD.board[i][j].attackingKing;
+						board[i][j].takenOrAttacked = BOARD.board[i][j].takenOrAttacked;
 					}
 					if (BOARD.board[i][j].identity.equals("bishop")) {
 						board[i][j] = new Bishop("white", i, j);
+						board[i][j].attackingKing = BOARD.board[i][j].attackingKing;
+						board[i][j].takenOrAttacked = BOARD.board[i][j].takenOrAttacked;
 					}
 					if (BOARD.board[i][j].identity.equals("king")) {
 						board[i][j] = new King("white", i, j);
 						board[i][j].hasMoved = BOARD.board[i][j].hasMoved;
+						board[i][j].attackingKing = BOARD.board[i][j].attackingKing;
+						board[i][j].takenOrAttacked = BOARD.board[i][j].takenOrAttacked;
 					}
 					if (BOARD.board[i][j].identity.equals("rook")) {
 						board[i][j] = new Rook("white", i, j);
 						board[i][j].hasMoved = BOARD.board[i][j].hasMoved;
+						board[i][j].attackingKing = BOARD.board[i][j].attackingKing;
+						board[i][j].takenOrAttacked = BOARD.board[i][j].takenOrAttacked;
 					}
 				} else if (BOARD.board[i][j].player.equals("black")){
 					if (BOARD.board[i][j].identity.equals("pawn")) {
 						board[i][j] = new Pawn("black", i, j);
 						board[i][j].canEnpassant = BOARD.board[i][j].canEnpassant;
+						board[i][j].attackingKing = BOARD.board[i][j].attackingKing;
+						board[i][j].takenOrAttacked = BOARD.board[i][j].takenOrAttacked;
 					}
 					if (BOARD.board[i][j].identity.equals("queen")) {
 						board[i][j] = new Queen("black", i, j);
+						board[i][j].attackingKing = BOARD.board[i][j].attackingKing;
+						board[i][j].takenOrAttacked = BOARD.board[i][j].takenOrAttacked;
 					}
 					if (BOARD.board[i][j].identity.equals("knight")) {
 						board[i][j] = new Knight("black", i, j);
+						board[i][j].attackingKing = BOARD.board[i][j].attackingKing;
+						board[i][j].takenOrAttacked = BOARD.board[i][j].takenOrAttacked;
 					}
 					if (BOARD.board[i][j].identity.equals("bishop")) {
 						board[i][j] = new Bishop("black", i, j);
+						board[i][j].attackingKing = BOARD.board[i][j].attackingKing;
+						board[i][j].takenOrAttacked = BOARD.board[i][j].takenOrAttacked;
 					}
 					if (BOARD.board[i][j].identity.equals("king")) {
 						board[i][j] = new King("black", i, j);
 						board[i][j].hasMoved = BOARD.board[i][j].hasMoved;
+						board[i][j].attackingKing = BOARD.board[i][j].attackingKing;
+						board[i][j].takenOrAttacked = BOARD.board[i][j].takenOrAttacked;
 					}
 					if (BOARD.board[i][j].identity.equals("rook")) {
 						board[i][j] = new Rook("black", i, j);
 						board[i][j].hasMoved = BOARD.board[i][j].hasMoved;
+						board[i][j].attackingKing = BOARD.board[i][j].attackingKing;
+						board[i][j].takenOrAttacked = BOARD.board[i][j].takenOrAttacked;
 					}
 				} else {
 					board[i][j] = new EmptyTile(i, j);
@@ -192,7 +215,7 @@ public class ChessBoard {
 		//Implements king castling from either side of the board
 		if(board[row][col].identity.equals("king")) {
 			//Implements white king castling to g1
-			if (board[row][col].player.equals("white") && Drow == 7 && Dcol == 6) {
+			if (board[row][col].player.equals("white") && Drow == 7 && Dcol == 6 && col == 4) {
 				board[7][5] = board[7][7];
 				board[7][5].hasMoved = true;
 				board[7][5].col = 5;
@@ -200,7 +223,7 @@ public class ChessBoard {
 				board[7][7] = new EmptyTile(7, 7);
 			}
 			//Implements white king castling to c1
-			else if (board[row][col].player.equals("white") && Drow == 7 && Dcol == 2) {
+			else if (board[row][col].player.equals("white") && Drow == 7 && Dcol == 2 && col == 4) {
 				board[7][3] = board[7][0];
 				board[7][3].hasMoved = true;
 				board[7][3].col = 3;
@@ -208,7 +231,7 @@ public class ChessBoard {
 				board[7][0] = new EmptyTile(7, 0);
 			}
 			//Implements black king castling to g8
-			else if (board[row][col].player.equals("black") && Drow == 0 && Dcol == 6) {
+			else if (board[row][col].player.equals("black") && Drow == 0 && Dcol == 6 && col == 4) {
 				board[0][5] = board[0][7];
 				board[0][5].hasMoved = true;
 				board[0][5].col = 5;
@@ -216,7 +239,7 @@ public class ChessBoard {
 				board[0][7] = new EmptyTile(0, 7);
 			}
 			//Implements black king castling to c8
-			else if (board[row][col].player.equals("black") && Drow == 0 && Dcol == 2) {
+			else if (board[row][col].player.equals("black") && Drow == 0 && Dcol == 2 && col == 4) {
 				board[0][3] = board[0][0];
 				board[0][3].hasMoved = true;
 				board[0][3].col = 3;
