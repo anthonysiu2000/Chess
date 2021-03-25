@@ -11,11 +11,7 @@ package chess;
 public class Queen extends ChessPiece{
 	//Constructor
 	/**
-	 * A queen is a chess piece on the chess board.
-	 * It moves in either a straight line or a diagonal line and will be placed on
-	 * the board at proper places.
-	 * The object queen is displayed as white or black as strings "wQ" or "bQ" and
-	 * has various attributes to it from ChessPiece.java.
+	 * A queen is a chess piece on the chess board. It moves in either a straight line or a diagonal line and will be placed on the board at proper places.The object queen is displayed as white or black as strings "wQ" or "bQ" and has various attributes to it from ChessPiece.java.
 	 * 
 	 * @param owner		sets the player to be the owner
 	 * @param x			the row number of the piece, in chess terms, it is numbers 1 to 8

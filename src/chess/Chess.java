@@ -91,15 +91,15 @@ public class Chess {
 	 * <p>
 	 * These include:
 	 * <ul>
-	 * <il>Displays board, sets takenOrAttacked values as according to the player, to help castling legality
-	 * <il>Resign
-	 * <il>Draw confirm
-	 * <il>Draw request
-	 * <il>Checks if selected unit is the player's and if the move is legal
-	 * <il>Executes the move and updates board
-	 * <il>Checks if the move puts the same player in check
-	 * <il>Break statement used when either player resigns/draws
-	 * <il>Changes turn and checks for check/checkmate
+	 * <li>Displays board, sets takenOrAttacked values as according to the player, to help castling legality
+	 * <li>Resign
+	 * <li>Draw confirm
+	 * <li>Draw request
+	 * <li>Checks if selected unit is the player's and if the move is legal
+	 * <li>Executes the move and updates board
+	 * <li>Checks if the move puts the same player in check
+	 * <li>Break statement used when either player resigns/draws
+	 * <li>Changes turn and checks for check/checkmate
 	 * <ul>
 	 * @param args
 	 * @throws IOException

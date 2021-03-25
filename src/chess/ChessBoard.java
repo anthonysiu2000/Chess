@@ -150,25 +150,25 @@ public class ChessBoard {
 	 * <p>
 	 * The factors and moves being checked in this method include:
 	 * <ul>
-	 * <il>Finds any pieces at the beginning of white's turn in row 4 and sets their canEnpassant to false
-	 * <il>Finds any pieces at the beginning of black's turn in row 3 and sets their canEnpassant to false
-	 * <il>Implements king castling from either side of the board
-	 * <il>Implements white king castling to g1
-	 * <il>Implements white king castling to c1
-	 * <il>Implements black king castling to g8
-	 * <il>Implements black king castling to c8
-	 * <il>Implements pawn promotion if a white pawn gets to the end of a column, assigns canEnpassant, and
+	 * <li>Finds any pieces at the beginning of white's turn in row 4 and sets their canEnpassant to false
+	 * <li>Finds any pieces at the beginning of black's turn in row 3 and sets their canEnpassant to false
+	 * <li>Implements king castling from either side of the board
+	 * <li>Implements white king castling to g1
+	 * <li>Implements white king castling to c1
+	 * <li>Implements black king castling to g8
+	 * <li>Implements black king castling to c8
+	 * <li>Implements pawn promotion if a white pawn gets to the end of a column, assigns canEnpassant, and
 	 * 	   implements enpassant if conditions are met
-	 * <il>Checks input if its Q, R, N, B, or anything else, promotes white pawn to requested piece, if no
+	 * <li>Checks input if its Q, R, N, B, or anything else, promotes white pawn to requested piece, if no
 	 * 	   specified piece, becomes white queen
-	 * <il>Implements promotion for black pawns
-	 * <il>Checks input if its Q, R, N, B, or anything else, promotes black pawn to requested piece, if no
+	 * <li>Implements promotion for black pawns
+	 * <li>Checks input if its Q, R, N, B, or anything else, promotes black pawn to requested piece, if no
 	 * 	   specified piece, becomes black queen
-	 * <il>Implements canEmpassant for white pawns that enter row 4
-	 * <il>Implements canEmpassant for black pawns that enter row 3
-	 * <il>Implements enpassant for white pawns on black pawns who moved in the most recent turn
-	 * <il>Implements enpassant for black pawns on white pawns who moved in the most recent turn
-	 * <il>Replaces the destination tile with the piece, and the origin tile with an empty tile
+	 * <li>Implements canEmpassant for white pawns that enter row 4
+	 * <li>Implements canEmpassant for black pawns that enter row 3
+	 * <li>Implements enpassant for white pawns on black pawns who moved in the most recent turn
+	 * <li>Implements enpassant for black pawns on white pawns who moved in the most recent turn
+	 * <li>Replaces the destination tile with the piece, and the origin tile with an empty tile
 	 * <ul>
 	 * 
 	 * @param input
@@ -429,20 +429,20 @@ public class ChessBoard {
 	 * <p>
 	 * These factors and actions in the method are listed as:
 	 * <ul>
-	 * <il>Gets king indexes
-	 * <il>King must be in check
-	 * <il>King's surroundings must be taken or attacked
-	 * <il>Attacking piece(s) cannot be taken
-	 * <il>Finds attacking piece(s) that aren't attacked by any of the checked' players pieces
-	 * <il>Path between attacking piece(s) and king cannot be blocked, unless attacking piece is knight
+	 * <li>Gets king indexes
+	 * <li>King must be in check
+	 * <li>King's surroundings must be taken or attacked
+	 * <li>Attacking piece(s) cannot be taken
+	 * <li>Finds attacking piece(s) that aren't attacked by any of the checked' players pieces
+	 * <li>Path between attacking piece(s) and king cannot be blocked, unless attacking piece is knight
 	 * 	   or pawn
-	 * <il>Checks for horizontal movement there must be at least one space between attacking piece and
+	 * <li>Checks for horizontal movement there must be at least one space between attacking piece and
 	 * 	   king
-	 * <il>Resets takenOrAttacked for king not allowed to move between attacking piece and itself
-	 * <il>Checks for diagonal movement there must be at least one space between attacking piece and
+	 * <li>Resets takenOrAttacked for king not allowed to move between attacking piece and itself
+	 * <li>Checks for diagonal movement there must be at least one space between attacking piece and
 	 * 	   king
-	 * <il>Resets takenOrAttacked for king not allowed to move between attacking piece and itself
-	 * <il>If attacking piece can be taken only by the king, then determines if the king can legally
+	 * <li>Resets takenOrAttacked for king not allowed to move between attacking piece and itself
+	 * <li>If attacking piece can be taken only by the king, then determines if the king can legally
 	 * 	   take the attacking piece
 	 * <ul>
 	 * @param 		player

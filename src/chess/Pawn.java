@@ -10,11 +10,7 @@ package chess;
  */
 public class Pawn extends ChessPiece {
 	/**
-	 * A pawn is a chess piece on the chess board.
-	 * It moves in a straight line, unless capturing pieces and will be placed on
-	 * the board at proper places.
-	 * The object pawn is displayed as white or black as strings "wp" or "bp" and
-	 * has various attributes to it from ChessPiece.java.
+	 * A pawn is a chess piece on the chess board. It moves in a straight line, unless capturing pieces and will be placed on the board at proper places. The object pawn is displayed as white or black as strings "wp" or "bp" and has various attributes to it from ChessPiece.java.
 	 * 
 	 * @param owner		sets the player to be the owner
 	 * @param x			the row number of the piece, in chess terms, it is numbers 1 to 8
