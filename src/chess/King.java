@@ -56,7 +56,7 @@ public class King extends ChessPiece{
 	 * <li>Checks if rook is at the corner, column 'h', and not moved
 	 * <li>Checks if spaces between king and rook are empty and not being attacked
 	 * <li>Check to move the king in one space
-	 * <ul>
+	 * </ul>
 	 * 
 	 * @see ChessPiece#isLegal(ChessPiece[][], int, int)
 	 */

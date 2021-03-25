@@ -50,7 +50,7 @@ public class Knight extends ChessPiece{
 	 * <ul>
 	 * <li>Cannot take your own piece
 	 * <li>The appropiate number of spaces are moved for a knight
-	 * <ul>
+	 * </ul>
 	 * 
 	 * @see ChessPiece#isLegal(ChessPiece[][], int, int)
 	 */

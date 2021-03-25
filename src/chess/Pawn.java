@@ -62,7 +62,7 @@ public class Pawn extends ChessPiece {
 	 * <li>Checks if space adjacent to black pawn is a space not neutral and not player, AKA an enemy piece
 	 * <li>Allows enpassant if in right row and previous move was white pawn up 2
 	 * <li>Invalid destination for black pawn
-	 * <ul>
+	 * </ul>
 	 * 
 	 * @see ChessPiece#isLegal(ChessPiece[][], int, int)
 	 */

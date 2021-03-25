@@ -100,9 +100,9 @@ public class Chess {
 	 * <li>Checks if the move puts the same player in check
 	 * <li>Break statement used when either player resigns/draws
 	 * <li>Changes turn and checks for check/checkmate
-	 * <ul>
-	 * @param args
-	 * @throws IOException
+	 * </ul>
+	 * @param args			Part of method creation.
+	 * @throws IOException	Signals that an I/O exception of some sort has occurred. This class is the general class of exceptions produced by failed orinterrupted I/O operations.
 	 */
 	public static void main(String[] args) throws IOException {
 

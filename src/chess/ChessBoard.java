@@ -58,7 +58,7 @@ public class ChessBoard {
 	 * a new board will be made with new objects and values
 	 * attached.
 	 * 
-	 * @param BOARD
+	 * @param BOARD				Input of the chessboard for the pieces.
 	 * @see #display()
 	 * @see ChessPiece()
 	 * @see ChessBoard#board
@@ -193,7 +193,7 @@ public class ChessBoard {
 	 * <li>Implements enpassant for white pawns on black pawns who moved in the most recent turn
 	 * <li>Implements enpassant for black pawns on white pawns who moved in the most recent turn
 	 * <li>Replaces the destination tile with the piece, and the origin tile with an empty tile
-	 * <ul>
+	 * </ul>
 	 * 
 	 * @param input
 	 */
