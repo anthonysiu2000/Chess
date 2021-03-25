@@ -10,10 +10,7 @@ package chess;
  */
 public class Rook extends ChessPiece{
 	/**
-	 * A rook is a chess piece on the chess board.
-	 * It moves in a horizontal line and will be placed on the board at proper places.
-	 * The object rook is displayed as white or black as strings "wR" or "bR" and
-	 * has various attributes to it from ChessPiece.java.
+	 * A rook is a chess piece on the chess board. It moves in a horizontal line and will be placed on the board at proper places. The object rook is displayed as white or black as strings "wR" or "bR" and has various attributes to it from ChessPiece.java.
 	 * 
 	 * @param owner		sets the player to be the owner
 	 * @param x			the row number of the piece, in chess terms, it is numbers 1 to 8
@@ -118,10 +115,10 @@ public class Rook extends ChessPiece{
 	 * <p>
 	 * This includes:
 	 * <ul>
-	 * <il>Parses through all spaces right and sets them to attacked until meeting a player or enemy piece
-	 * <il>Parses through all spaces left and sets them to attacked until meeting a player or enemy piece
-	 * <il>Parses through all spaces down and sets them to attacked until meeting a player or enemy piece
-	 * <il>Parses through all spaces up and sets them to attacked until meeting a player or enemy piece
+	 * <li>Parses through all spaces right and sets them to attacked until meeting a player or enemy piece
+	 * <li>Parses through all spaces left and sets them to attacked until meeting a player or enemy piece
+	 * <li>Parses through all spaces down and sets them to attacked until meeting a player or enemy piece
+	 * <li>Parses through all spaces up and sets them to attacked until meeting a player or enemy piece
 	 * <ul>
 	 * 
 	 * @return board

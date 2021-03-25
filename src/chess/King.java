@@ -10,10 +10,7 @@ package chess;
  */
 public class King extends ChessPiece{
 	/**
-	 * A king is a chess piece on the chess board.
-	 * It moves a single space at a time and will be placed on the board at proper places.
-	 * The object bishop is displayed as white or black as strings "wK" or "bK" and
-	 * has various attributes to it from ChessPiece.java.
+	 * A king is a chess piece on the chess board. It moves a single space at a time and will be placed on the board at proper places. The object bishop is displayed as white or black as strings "wK" or "bK" and has various attributes to it from ChessPiece.java.
 	 * 
 	 * @param owner		sets the player to be the owner
 	 * @param x			the row number of the piece, in chess terms, it is numbers 1 to 8
