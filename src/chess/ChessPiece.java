@@ -13,11 +13,9 @@ package chess;
  * <li>Status on it being attacked or not
  * </ul>
  * 
- * <p>
- * 
  * @author Anthony Siu
  * @author Benjamin Lee
- * @param row				the row number of the piece, in chess terms, it is numbers 1 to 8
+ * @param row 				the row number of the piece, in chess terms, it is numbers 1 to 8
  * @param col				the column number of the piece, in chess terms, it is letters a to h
  * @param player			the owner of the piece, white or black
  * @param identity			the identity of the piece; pawn, knight, bishop, rook, queen, king

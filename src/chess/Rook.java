@@ -56,7 +56,7 @@ public class Rook extends ChessPiece{
 	 * <li>Check if there are any pieces in between when moving right
 	 * <li>Check if there are any pieces in between when moving left
 	 * <li>If no pieces are in between, move is successful
-	 * <ul>
+	 * </ul>
 	 * 
 	 * @see ChessPiece#isLegal(ChessPiece[][], int, int)
 	 */
@@ -119,7 +119,7 @@ public class Rook extends ChessPiece{
 	 * <li>Parses through all spaces left and sets them to attacked until meeting a player or enemy piece
 	 * <li>Parses through all spaces down and sets them to attacked until meeting a player or enemy piece
 	 * <li>Parses through all spaces up and sets them to attacked until meeting a player or enemy piece
-	 * <ul>
+	 * </ul>
 	 * 
 	 * @return board
 	 */
