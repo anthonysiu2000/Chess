@@ -215,7 +215,7 @@ public class ChessBoard {
 		//Implements king castling from either side of the board
 		if(board[row][col].identity.equals("king")) {
 			//Implements white king castling to g1
-			if (board[row][col].player.equals("white") && Drow == 7 && Dcol == 6 && row == 4) {
+			if (board[row][col].player.equals("white") && Drow == 7 && Dcol == 6 && col == 4) {
 				board[7][5] = board[7][7];
 				board[7][5].hasMoved = true;
 				board[7][5].col = 5;
@@ -223,7 +223,7 @@ public class ChessBoard {
 				board[7][7] = new EmptyTile(7, 7);
 			}
 			//Implements white king castling to c1
-			else if (board[row][col].player.equals("white") && Drow == 7 && Dcol == 2 && row == 4) {
+			else if (board[row][col].player.equals("white") && Drow == 7 && Dcol == 2 && col == 4) {
 				board[7][3] = board[7][0];
 				board[7][3].hasMoved = true;
 				board[7][3].col = 3;
@@ -231,7 +231,7 @@ public class ChessBoard {
 				board[7][0] = new EmptyTile(7, 0);
 			}
 			//Implements black king castling to g8
-			else if (board[row][col].player.equals("black") && Drow == 0 && Dcol == 6 && row == 4) {
+			else if (board[row][col].player.equals("black") && Drow == 0 && Dcol == 6 && col == 4) {
 				board[0][5] = board[0][7];
 				board[0][5].hasMoved = true;
 				board[0][5].col = 5;
@@ -239,7 +239,7 @@ public class ChessBoard {
 				board[0][7] = new EmptyTile(0, 7);
 			}
 			//Implements black king castling to c8
-			else if (board[row][col].player.equals("black") && Drow == 0 && Dcol == 2 && row == 4) {
+			else if (board[row][col].player.equals("black") && Drow == 0 && Dcol == 2 && col == 4) {
 				board[0][3] = board[0][0];
 				board[0][3].hasMoved = true;
 				board[0][3].col = 3;
