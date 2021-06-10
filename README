@@ -1,1 +1,23 @@
-asdfasdf
+The project was made on Java, allowing Chess to be played on the command line.
+
+The following aspects of Chess are implemented:
+Illegal Move Detection
+Enpassant
+Check
+Checkmate
+Draw
+Resign
+Pawn Promotion
+Castling
+
+The following aspects of Chess are not implemented:
+Stalemate
+
+How to play: 
+
+Note: White goes first
+1. Enter a piece's location and its destination, in the format "a1 a2"
+2. Enter "Draw" after your move to request a draw from the opponent. The opponent is obligated to accept.
+3. Enter "Resign" to forfeit the match.
+4. In order to promote a pawn to a piece other than a queen, enter "B", "N", or "R" after the pawn move in order to promote to a Bishop, Knight or Rook, respectively.
+
